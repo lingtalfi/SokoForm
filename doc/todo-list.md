@@ -38,3 +38,7 @@ some quickstart code?
         }
     }
 ```
+
+
+
+- add js tool for removing error messages automatically
