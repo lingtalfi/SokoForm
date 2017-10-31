@@ -1332,6 +1332,10 @@ Related
 History Log
 ------------------
     
+- 1.1.0 -- 2017-10-31
+
+    - add SokoForm.init method, as an extension of the constructor (to make subclassing a bit easier)
+    
 - 1.0.0 -- 2017-10-30
 
     - initial commit

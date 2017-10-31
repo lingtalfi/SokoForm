@@ -80,6 +80,7 @@ class SokoForm implements SokoFormInterface
         $this->validationRules = [];
         $this->prepared = false;
         $this->model = null;
+        $this->init();
     }
 
     public static function create()
@@ -392,6 +393,10 @@ class SokoForm implements SokoFormInterface
 
     }
 
+    protected function init()
+    {
+
+    }
 
     //--------------------------------------------
     //
