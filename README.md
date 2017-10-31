@@ -882,7 +882,7 @@ Also, it could be used in a case where the control is a list, and we want to pro
 
 So in short, the recommended preferences array should look like this:
 
-- css: array of css property => css value
+- attributes: array of html attributes, you can use it to pass css properties (id, class, style, ...)
 - ...your own control preferences
 
 
