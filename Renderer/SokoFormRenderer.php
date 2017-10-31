@@ -33,6 +33,7 @@ class SokoFormRenderer
      * @var callable|object|null: either an object with a render method, or a callable.
      */
     private $notificationsRenderer;
+    private $generalPreferences;
 
     public function __construct()
     {
@@ -40,6 +41,7 @@ class SokoFormRenderer
         $this->formModel = null;
         $this->errorDisplayMode = "controlLevelFirst";
         $this->renderCallbacks = [];
+        $this->generalPreferences = [];
         $this->notificationsRenderer = null;
     }
 
@@ -67,6 +69,13 @@ class SokoFormRenderer
     {
         $formModel = $this->getModel();
         $controls = $formModel['controls'];
+
+        if (null === $preferences) {
+            $preferences = [];
+        }
+        $preferences = array_replace($this->generalPreferences, $preferences);
+
+
 
         if (array_key_exists($controlName, $controls)) {
             $controlModel = $controls[$controlName];
@@ -123,6 +132,13 @@ class SokoFormRenderer
         if (true === $throwEx) {
             throw new SokoFormException("Property $propertyName not found in control $controlName");
         }
+    }
+
+
+    public function setGeneralPreferences(array $preferences)
+    {
+        $this->generalPreferences = $preferences;
+        return $this;
     }
 
     //--------------------------------------------

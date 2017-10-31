@@ -238,8 +238,8 @@ class SokoForm implements SokoFormInterface
                     //--------------------------------------------
                     $control->setValue($context[$name]);
                 }
-
             }
+
 
             //--------------------------------------------
             // NOW THE FORM IS SUBMITTED AND VALID,

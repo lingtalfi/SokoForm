@@ -32,6 +32,14 @@ class SokoDemoFormRenderer extends SokoTableFormRenderer
         </tr>
         <?php
 
+        $model = [
+            'errors' => array_merge(
+                $phoneIndicatorControl['errors'],
+                $phoneControl['errors']
+            )
+        ];
+        $this->doRenderError($model);
+
     }
 
 }
