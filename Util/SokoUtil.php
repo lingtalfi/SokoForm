@@ -25,13 +25,18 @@ class SokoUtil
          * Adding attributes, or merging if it's already set by the user.
          */
         $attr = [];
-        if (array_key_exists("class", $preferences)) {
-            if (array_key_exists("attributes", $preferences['class'])) {
-                $attr = $preferences['class']['attributes'];
+        if (array_key_exists("attributes", $preferences)) {
+            $attr = $preferences['attributes'];
+            if (array_key_exists("class", $attr)) {
+                $cssClasses = explode(" ", $attr['class']);
+                $cssClasses[] = $cssClass;
+                $cssClasses = array_unique($cssClasses);
+                $attr['class'] = implode(" ", $cssClasses);
+            } else {
+                $attr['class'] = $cssClass;
             }
-        }
-        if (!in_array($cssClass, $attr)) {
-            $attr[] = $cssClass;
+        } else {
+            $attr['class'] = $cssClass;
         }
         $preferences["attributes"] = $attr;
     }

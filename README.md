@@ -1341,6 +1341,10 @@ Related
 History Log
 ------------------
     
+- 1.7.1 -- 2017-10-31
+
+    - fix SokoUtil.addCssClassToPreferencesAttributes, now really works 
+    
 - 1.7.0 -- 2017-10-31
 
     - add SokoUtil
