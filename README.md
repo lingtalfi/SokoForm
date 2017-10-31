@@ -854,12 +854,12 @@ The render method uses the following algorithm for every control:
 The rendering method, when used as a method, has the following signature:
  
 ```php 
-void  rendererMethod ( array controlModel, array preferences=null ) // This function displays the control     
+void  rendererMethod ( array controlModel, array preferences=[] ) // This function displays the control     
 ```
 
 When used as a callback, it has the following signature:
 ```php 
-void  rendererFn ( array controlModel, array preferences=null, array formModel ) // This callback displays the control     
+void  rendererFn ( array controlModel, array preferences=[], array formModel ) // This callback displays the control     
 ```
 
 
@@ -1340,6 +1340,10 @@ Related
 
 History Log
 ------------------
+    
+- 1.5.0 -- 2017-10-31
+
+    - update SokoTableFormRenderer render method; now preferences is an array and cannot be null
     
 - 1.4.0 -- 2017-10-31
 

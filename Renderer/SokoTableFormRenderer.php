@@ -15,7 +15,7 @@ class SokoTableFormRenderer extends SokoFormRenderer
     //--------------------------------------------
     // PUBLIC METHOD
     //--------------------------------------------
-    public function submitButton(array $preferences = null)
+    public function submitButton(array $preferences = [])
     {
         $label = $this->getPreference("label", $preferences, "Submit");
         ?>
@@ -34,22 +34,22 @@ class SokoTableFormRenderer extends SokoFormRenderer
     //--------------------------------------------
     // MAIN METHODS
     //--------------------------------------------
-    protected function renderInputText(array $model, $preferences = null)
+    protected function renderInputText(array $model, array $preferences = [])
     {
         $this->doRenderInputControl($model, $preferences);
     }
 
-    protected function renderInputHidden(array $model, $preferences = null)
+    protected function renderInputHidden(array $model, array $preferences = [])
     {
         $this->doRenderInputControl($model, $preferences);
     }
 
-    protected function renderInputPassword(array $model, $preferences = null)
+    protected function renderInputPassword(array $model, array $preferences = [])
     {
         $this->doRenderInputControl($model, $preferences);
     }
 
-    protected function renderInputTextarea(array $model, $preferences = null)
+    protected function renderInputTextarea(array $model, array $preferences = [])
     {
         ?>
         <tr>
@@ -63,22 +63,22 @@ class SokoTableFormRenderer extends SokoFormRenderer
     }
 
 
-    protected function renderChoiceList(array $model, $preferences = null)
+    protected function renderChoiceList(array $model, array $preferences = [])
     {
         $this->doRenderChoiceControl($model, $preferences);
     }
 
-    protected function renderChoiceListGroup(array $model, $preferences = null)
+    protected function renderChoiceListGroup(array $model, array $preferences = [])
     {
         $this->doRenderChoiceControl($model, $preferences);
     }
 
-    protected function renderChoiceListWithNames(array $model, $preferences = null)
+    protected function renderChoiceListWithNames(array $model, array $preferences = [])
     {
         $this->doRenderChoiceControl($model, $preferences);
     }
 
-    protected function renderFileStatic(array $model, $preferences = null)
+    protected function renderFileStatic(array $model, array $preferences = [])
     {
         ?>
         <tr>
@@ -99,7 +99,7 @@ class SokoTableFormRenderer extends SokoFormRenderer
     //--------------------------------------------
     // HELPERS
     //--------------------------------------------
-    protected function doRenderInputControl(array $model, $preferences = null)
+    protected function doRenderInputControl(array $model, array $preferences = [])
     {
         ?>
         <tr>
@@ -112,7 +112,7 @@ class SokoTableFormRenderer extends SokoFormRenderer
         $this->doRenderError($model, $preferences);
     }
 
-    protected function doRenderChoiceControl(array $model, $preferences = null)
+    protected function doRenderChoiceControl(array $model, array $preferences = [])
     {
         ?>
         <tr>
@@ -125,7 +125,7 @@ class SokoTableFormRenderer extends SokoFormRenderer
         $this->doRenderError($model);
     }
 
-    protected function doRenderInputWidget(array $model, $preferences = null)
+    protected function doRenderInputWidget(array $model, array $preferences = [])
     {
         ?>
         <input type="<?php echo $model['type']; ?>" name="<?php echo $model['name']; ?>"
@@ -136,7 +136,7 @@ class SokoTableFormRenderer extends SokoFormRenderer
         <?php
     }
 
-    protected function doRenderTextareaWidget(array $model, $preferences = null)
+    protected function doRenderTextareaWidget(array $model, array $preferences = [])
     {
         ?>
         <textarea name="<?php echo $model['name']; ?>"
@@ -147,7 +147,7 @@ class SokoTableFormRenderer extends SokoFormRenderer
         <?php
     }
 
-    protected function doRenderChoiceWidget(array $model, $preferences = null)
+    protected function doRenderChoiceWidget(array $model, array $preferences = [])
     {
         $type = $model['type'];
         if ("list" === $type) {
@@ -161,7 +161,7 @@ class SokoTableFormRenderer extends SokoFormRenderer
         }
     }
 
-    protected function doRenderChoiceListWidget(array $model, $preferences = null)
+    protected function doRenderChoiceListWidget(array $model, array $preferences = [])
     {
         $style = $this->getPreference("style", $preferences, 'select'); // select (default)|radio
         if ("radio" === $style) {
@@ -171,7 +171,7 @@ class SokoTableFormRenderer extends SokoFormRenderer
         }
     }
 
-    protected function doRenderChoiceListSelectWidget(array $model, $preferences = null)
+    protected function doRenderChoiceListSelectWidget(array $model, array $preferences = [])
     {
         $value = $model['value'];
         ?>
@@ -187,7 +187,7 @@ class SokoTableFormRenderer extends SokoFormRenderer
         <?php
     }
 
-    protected function doRenderChoiceListRadioWidget(array $model, $preferences = null)
+    protected function doRenderChoiceListRadioWidget(array $model, array $preferences = [])
     {
         $value = $model['value'];
         foreach ($model['choices'] as $val => $label):
@@ -208,7 +208,7 @@ class SokoTableFormRenderer extends SokoFormRenderer
         <?php endforeach;
     }
 
-    protected function doRenderChoiceListGroupWidget(array $model, $preferences = null)
+    protected function doRenderChoiceListGroupWidget(array $model, array $preferences = [])
     {
         $value = $model['value'];
         ?>
@@ -228,7 +228,7 @@ class SokoTableFormRenderer extends SokoFormRenderer
         <?php
     }
 
-    protected function doRenderChoiceListWithNamesWidget(array $model, array $preferences = null)
+    protected function doRenderChoiceListWithNamesWidget(array $model, array $preferences = [])
     {
         $inline = $this->getPreference('inline', $preferences, false);
 
@@ -242,8 +242,18 @@ class SokoTableFormRenderer extends SokoFormRenderer
         }
         ?>
 
-        <?php foreach ($model['choices'] as $info):
-        list($name, $val, $label) = $info;
+        <?php foreach ($model['choices'] as $info): ?>
+        <?php $this->doRenderChoiceListWithNamesItemWidget($info, $values); ?>
+        <?php if (false === $inline): ?><br><?php endif; ?>
+
+
+    <?php endforeach; ?>
+        <?php
+    }
+
+    protected function doRenderChoiceListWithNamesItemWidget(array $itemModel, array $values)
+    {
+        list($name, $val, $label) = $itemModel;
         $id = $this->formModel['form']['name'] . "-" . CaseTool::toDog($name) . "-" . CaseTool::toDog($val);
         $val = (string)$val; // if the model provides keys as int, we need to convert them so that the === works
         $sSel = (array_key_exists($val, $values)) ? 'checked="checked"' : '';
@@ -254,23 +264,17 @@ class SokoTableFormRenderer extends SokoFormRenderer
                 type="checkbox" name="<?php echo htmlspecialchars($name); ?>"
                 value="<?php echo htmlspecialchars($val); ?>">
         <label for="<?php echo $id; ?>"><?php echo $label; ?></label>
-        <?php if (false === $inline): ?>
-        <br>
-    <?php endif; ?>
-
-
-    <?php endforeach; ?>
         <?php
     }
 
-    protected function doRenderLabel(array $model, $preferences = null)
+    protected function doRenderLabel(array $model, array $preferences = [])
     {
         if (null !== $model['label']) {
             echo $model['label'];
         }
     }
 
-    protected function doRenderError(array $model, $preferences = null)
+    protected function doRenderError(array $model, array $preferences = [])
     {
         ?>
         <tr class="soko-error-container

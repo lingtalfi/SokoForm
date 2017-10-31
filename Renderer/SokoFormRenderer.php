@@ -59,13 +59,15 @@ class SokoFormRenderer
 
     /**
      * @param $controlName
-     * @param null $preferences , the display preferences.
+     * @param array $preferences , the display preferences.
      *              For instance, if the renderer knows how to do it,
      *              if the control is a list, we could have two preferences:
      *                  - select
      *                  - radio
+     * @return void
+     * @throws SokoFormException
      */
-    public function render($controlName, $preferences = null)
+    public function render($controlName, array $preferences = [])
     {
         $formModel = $this->getModel();
         $controls = $formModel['controls'];
@@ -74,7 +76,6 @@ class SokoFormRenderer
             $preferences = [];
         }
         $preferences = array_replace($this->generalPreferences, $preferences);
-
 
 
         if (array_key_exists($controlName, $controls)) {
@@ -247,12 +248,9 @@ class SokoFormRenderer
     /**
      * Ease access to a specific preference key
      */
-    protected function getPreference($name, array $preferences = null, $default = null)
+    protected function getPreference($name, array $preferences = [], $default = null)
     {
-        return (
-            is_array($preferences) &&
-            array_key_exists($name, $preferences)
-        ) ? $preferences[$name] : $default;
+        return (array_key_exists($name, $preferences)) ? $preferences[$name] : $default;
     }
 
     //--------------------------------------------
