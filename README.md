@@ -1341,6 +1341,10 @@ Related
 History Log
 ------------------
     
+- 1.6.0 -- 2017-10-31
+
+    - add SokoTableFormRenderer.getHtmlAtributesAsString protected method
+    
 - 1.5.0 -- 2017-10-31
 
     - update SokoTableFormRenderer render method; now preferences is an array and cannot be null

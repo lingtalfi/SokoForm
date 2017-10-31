@@ -5,6 +5,7 @@ namespace SokoForm\Renderer;
 
 
 use Bat\CaseTool;
+use Bat\StringTool;
 use SokoForm\Exception\SokoFormException;
 use SokoForm\Form\SokoFormInterface;
 
@@ -251,6 +252,14 @@ class SokoFormRenderer
     protected function getPreference($name, array $preferences = [], $default = null)
     {
         return (array_key_exists($name, $preferences)) ? $preferences[$name] : $default;
+    }
+
+    protected function getHtmlAtributesAsString(array $preferences)
+    {
+        if (array_key_exists("attributes", $preferences)) {
+            return StringTool::htmlAttributes($preferences['attributes']);
+        }
+        return "";
     }
 
     //--------------------------------------------

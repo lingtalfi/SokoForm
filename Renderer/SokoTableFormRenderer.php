@@ -19,15 +19,15 @@ class SokoTableFormRenderer extends SokoFormRenderer
     {
         $label = $this->getPreference("label", $preferences, "Submit");
         ?>
-        <tr>
-            <td>
-
-            </td>
-            <td>
-                <input type="submit" name="not_important_submit_button"
-                       value="<?php echo htmlspecialchars($label); ?>">
-            </td>
-        </tr>
+        <table>
+            <tr>
+                <td colspan="2" class="tcenter">
+                    <button type="submit" class="lee-red-button mauto" name="not_important_submit_button">
+                        <?php echo $label; ?>
+                    </button>
+                </td>
+            </tr>
+        </table>
         <?php
     }
 
@@ -114,8 +114,9 @@ class SokoTableFormRenderer extends SokoFormRenderer
 
     protected function doRenderChoiceControl(array $model, array $preferences = [])
     {
+        $attr = $this->getHtmlAtributesAsString($preferences);
         ?>
-        <tr>
+        <tr<?php echo $attr; ?>>
             <td><?php $this->doRenderLabel($model, $preferences); ?></td>
             <td>
                 <?php $this->doRenderChoiceWidget($model, $preferences); ?>
