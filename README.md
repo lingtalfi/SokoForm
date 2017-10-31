@@ -22,6 +22,15 @@ Or just download it and place it where you want otherwise.
 
 
 
+What's the nee philosophy behind Soko form?
+=============================================
+
+With Soko form, the view (SokoFormRenderer in particular) has a lot of power:
+
+- it's aware of the controls' names 
+- it can decide to show/hide the label of any control 
+- it can access any control property and make a custom control from scratch 
+
 
 
 
@@ -1331,6 +1340,10 @@ Related
 
 History Log
 ------------------
+    
+- 1.2.0 -- 2017-10-31
+
+    - add SokoFormRenderer.getControlProperty method
     
 - 1.1.0 -- 2017-10-31
 

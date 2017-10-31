@@ -133,6 +133,14 @@ class SokoForm implements SokoFormInterface
         return $this->controls;
     }
 
+
+    /**
+     * @param callable $onSuccess
+     *                      fn ( array $context, SokoFormInterface $form )
+     *
+     * @param array|null $context
+     * @return null
+     */
     public function process(callable $onSuccess, array $context = null)
     {
         $this->prepare();

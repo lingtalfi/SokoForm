@@ -110,6 +110,21 @@ class SokoFormRenderer
         }
     }
 
+
+    public function getControlProperty($controlName, $propertyName, $throwEx = false)
+    {
+        $formModel = $this->getModel();
+        $controls = $formModel['controls'];
+        if (array_key_exists($controlName, $controls)) {
+            if (array_key_exists($propertyName, $controls[$controlName])) {
+                return $controls[$controlName][$propertyName];
+            }
+        }
+        if (true === $throwEx) {
+            throw new SokoFormException("Property $propertyName not found in control $controlName");
+        }
+    }
+
     //--------------------------------------------
     //
     //--------------------------------------------
