@@ -1341,6 +1341,10 @@ Related
 History Log
 ------------------
     
+- 1.4.0 -- 2017-10-31
+
+    - add SokoTableFormRenderer style preference (radio|select)
+    
 - 1.3.0 -- 2017-10-31
 
     - add SokoFormRenderer.setGeneralPreferences method

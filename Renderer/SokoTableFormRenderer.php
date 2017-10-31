@@ -31,7 +31,6 @@ class SokoTableFormRenderer extends SokoFormRenderer
         <?php
     }
 
-
     //--------------------------------------------
     // MAIN METHODS
     //--------------------------------------------
@@ -164,6 +163,16 @@ class SokoTableFormRenderer extends SokoFormRenderer
 
     protected function doRenderChoiceListWidget(array $model, $preferences = null)
     {
+        $style = $this->getPreference("style", $preferences, 'select'); // select (default)|radio
+        if ("radio" === $style) {
+            $this->doRenderChoiceListRadioWidget($model, $preferences);
+        } else {
+            $this->doRenderChoiceListSelectWidget($model, $preferences);
+        }
+    }
+
+    protected function doRenderChoiceListSelectWidget(array $model, $preferences = null)
+    {
         $value = $model['value'];
         ?>
         <select name="<?php echo $model['name']; ?>">
@@ -176,6 +185,27 @@ class SokoTableFormRenderer extends SokoFormRenderer
             <?php endforeach; ?>
         </select>
         <?php
+    }
+
+    protected function doRenderChoiceListRadioWidget(array $model, $preferences = null)
+    {
+        $value = $model['value'];
+        foreach ($model['choices'] as $val => $label):
+
+            $name = $model['name'];
+
+            $val = (string)$val; // if the model provides keys as int, we need to convert them so that the === works
+            $sSel = ($value === $val) ? 'checked="checked"' : '';
+            $id = $this->formModel['form']['name'] . "-" . CaseTool::toDog($name) . "-" . CaseTool::toDog($val);
+            ?>
+            <input
+                    id="<?php echo $id; ?>"
+                    type="radio" name="<?php echo $name; ?>"
+                <?php echo $sSel; ?>
+                    value="<?php echo htmlspecialchars($val); ?>"
+            >
+            <label for="<?php echo $id; ?>"><?php echo $label; ?></label>
+        <?php endforeach;
     }
 
     protected function doRenderChoiceListGroupWidget(array $model, $preferences = null)
