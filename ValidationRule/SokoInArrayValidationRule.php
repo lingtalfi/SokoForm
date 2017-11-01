@@ -4,6 +4,7 @@
 namespace SokoForm\ValidationRule;
 
 
+use SokoForm\Exception\SokoFormException;
 use SokoForm\Form\SokoFormInterface;
 
 class SokoInArrayValidationRule extends SokoValidationRule
@@ -17,10 +18,31 @@ class SokoInArrayValidationRule extends SokoValidationRule
 
         $this->setValidationFunction(function ($value, array &$preferences, &$error = null, SokoFormInterface $form) {
             if (true === $this->checkSubmitted($value, $error)) {
-                if (!in_array($value, $preferences['array'])) {
-                    $preferences['sArray'] = implode(', ', $preferences['array']);
-                    $error = "The value must be one of {sArray}";
-                    return false;
+
+
+                /**
+                 * Do we have a regular array or an associative array?
+                 */
+                $array = $preferences['array'];
+                if ($array) {
+
+                    $isAssociative = $this->isAssociative($array);
+                    if (true === $isAssociative) {
+                        $labels = array_values($array);
+                        $values = array_keys($array);
+                    } else {
+                        $labels = $array;
+                        $values = $array;
+                    }
+
+
+                    if (!in_array($value, $values)) {
+                        $preferences['sArray'] = implode(', ', $labels);
+                        $error = "The value must be one of {sArray}";
+                        return false;
+                    }
+                } else {
+                    throw new SokoFormException("The array must not be empty");
                 }
             } else {
                 return false;
@@ -29,10 +51,31 @@ class SokoInArrayValidationRule extends SokoValidationRule
         });
     }
 
+    /**
+     *
+     * @param array $array , either an array of values (called regular form), or an array of
+     *                      value => label (called associative form).
+     *
+     *                      To be recognized as an array of value => label, the first value has to be not an int.
+     *                      The label in the associative form is displayed in the error message.
+     *                      That's the only difference.
+     *
+     * @return $this
+     */
     public function setArray(array $array)
     {
         $this->preferences['array'] = $array;
         return $this;
     }
 
+    //--------------------------------------------
+    //
+    //--------------------------------------------
+    private function isAssociative(array $array)
+    {
+        foreach ($array as $k => $v) {
+            return (false === is_int($k));
+        }
+        return false;
+    }
 }
