@@ -13,6 +13,10 @@ class SokoInRangeValidationRule extends SokoValidationRule
     public function __construct()
     {
         parent::__construct();
+
+        $this->setErrorMessage("The value must be comprised between {min} and {max}");
+
+
         $this->preferences['min'] = 1;
         $this->preferences['max'] = 10;
         $this->preferences['step'] = 1;
@@ -21,7 +25,7 @@ class SokoInRangeValidationRule extends SokoValidationRule
             if (true === $this->checkSubmitted($value, $error)) {
                 $range = range($this->preferences['min'], $this->preferences['max'], $this->preferences['step']);
                 if (!in_array($value, $range)) {
-                    $error = "The value must be comprised between {min} and {max}";
+                    $error = $this->getErrorMessage();
                     return false;
                 }
             } else {

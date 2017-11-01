@@ -14,6 +14,8 @@ class SokoDateValidationRule extends SokoValidationRule
     public function __construct()
     {
         parent::__construct();
+
+        $this->setErrorMessage("The field doesn't match the pattern {dateFormat}");
         $this->preferences['dateFormat'] = 'yyyy/mm/dd';
 
         $this->setValidationFunction(function ($value, array &$preferences, &$error = null, SokoFormInterface $form) {
@@ -21,7 +23,7 @@ class SokoDateValidationRule extends SokoValidationRule
 
                 $datePattern = $this->getPattern($this->preferences['dateFormat']);
                 if (!preg_match($datePattern, $value)) {
-                    $error = "The field doesn't match the pattern {dateFormat}";
+                    $error = $this->getErrorMessage();
                     return false;
                 }
             } else {

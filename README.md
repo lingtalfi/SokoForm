@@ -1342,6 +1342,10 @@ Related
 History Log
 ------------------
     
+- 1.10.0 -- 2017-11-01
+
+    - add SokoValidationRule.setErrorMessage system (makes it possible to override default error messages using inheritance)
+    
 - 1.9.0 -- 2017-11-01
 
     - improve SokoInArrayValidationRule now accepts associative array (prettier labels in error messages)

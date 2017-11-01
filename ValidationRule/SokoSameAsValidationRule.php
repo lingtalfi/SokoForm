@@ -13,6 +13,9 @@ class SokoSameAsValidationRule extends SokoValidationRule
     public function __construct()
     {
         parent::__construct();
+
+        $this->setErrorMessage("The two values aren't identical");
+        $this->setErrorMessage("The control {otherControl} does not exist", "aux");
         $this->preferences['otherControl'] = null;
 
         $this->setValidationFunction(function ($value, array &$preferences, &$error = null, SokoFormInterface $form) {
@@ -21,12 +24,12 @@ class SokoSameAsValidationRule extends SokoValidationRule
                 if (false !== $control = $form->getControl($otherControl, false, false)) {
                     $otherValue = $control->getValue();
                     if ($otherValue !== $value) {
-                        $error = "The two values aren't identical";
+                        $error = $this->getErrorMessage();
                         return false;
                     }
                 } else {
                     // the expected control doesn't exist
-                    $error = "The control {otherControl} does not exist";
+                    $error = $this->getErrorMessage("aux");
                     return false;
                 }
             } else {

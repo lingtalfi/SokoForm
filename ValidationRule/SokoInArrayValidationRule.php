@@ -14,6 +14,10 @@ class SokoInArrayValidationRule extends SokoValidationRule
     public function __construct()
     {
         parent::__construct();
+
+        $this->setErrorMessage("The value must be one of {sArray}");
+
+
         $this->preferences['array'] = [];
 
         $this->setValidationFunction(function ($value, array &$preferences, &$error = null, SokoFormInterface $form) {
@@ -38,7 +42,7 @@ class SokoInArrayValidationRule extends SokoValidationRule
 
                     if (!in_array($value, $values)) {
                         $preferences['sArray'] = implode(', ', $labels);
-                        $error = "The value must be one of {sArray}";
+                        $error = $this->getErrorMessage();
                         return false;
                     }
                 } else {
@@ -67,6 +71,7 @@ class SokoInArrayValidationRule extends SokoValidationRule
         $this->preferences['array'] = $array;
         return $this;
     }
+
 
     //--------------------------------------------
     //

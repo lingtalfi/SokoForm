@@ -15,10 +15,13 @@ class SokoNotEmptyValidationRule extends SokoValidationRule
     {
         parent::__construct();
 
+
+        $this->setErrorMessage("The field is required");
+
         $this->setValidationFunction(function ($value, array &$preferences, &$error = null, SokoFormInterface $form) {
             if (true === $this->checkSubmitted($value, $error)) {
                 if (empty($value)) {
-                    $error = "The field is required";
+                    $error = $this->getErrorMessage();
                     return false;
                 }
             } else {

@@ -10,10 +10,12 @@ class SokoValidationRule implements SokoValidationRuleInterface
 {
     protected $preferences;
     private $validationFunction;
+    private $errorMessages;
 
 
     public function __construct()
     {
+        $this->errorMessages['mandatory'] = "This field is mandatory";
         $this->preferences = [];
         $this->validationFunction = function ($value, array &$preferences, &$error = null, SokoFormInterface $form) {
             return true;
@@ -62,15 +64,39 @@ class SokoValidationRule implements SokoValidationRuleInterface
         return $this;
     }
 
+
+    /**
+     *
+     * @param $messageModel
+     * @param string $type , main|aux|mandatory|...your own type
+     *              - main is the default, you should use it every time you have only one error message
+     *                      (apart from mandatory which is reserved and doesn't count for that matter)
+     *              - aux is the type you would assign to an auxiliary (as in second) error message
+     *              - mandatory is reserved by this class
+     *
+     *
+     * @return $this
+     */
+    public function setErrorMessage($messageModel, $type = "main")
+    {
+        $this->errorMessages[$type] = $messageModel;
+        return $this;
+    }
+
     //--------------------------------------------
     //
     //--------------------------------------------
     protected function checkSubmitted($value, &$error)
     {
         if (null === $value) {
-            $error = "This field is mandatory";
+            $error = $this->getErrorMessage("mandatory");
             return false;
         }
         return true;
+    }
+
+    protected function getErrorMessage($type = "main")
+    {
+        return $this->errorMessages[$type];
     }
 }
