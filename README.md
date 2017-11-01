@@ -484,6 +484,24 @@ file and replace the translations with your owns.
 If you do so, please consider giving me your translations so that I can add them to this repo.
 
 
+  
+#### Override the default error message
+  
+Sometimes, you will find yourself using a validation rule that almost fit your likings, except for the 
+error message.
+
+To customize the error message, simply use the setErrorMessage method, which takes an abstract error message (like
+the ones created inside ValidationRule objects).
+
+
+```php
+$form
+    ->addValidationRule("phone_prefix", SokoInArrayValidationRule::create()
+            ->setErrorMessage("L'indicateur téléphonique doit être l'une des valeurs suivantes: {sArray}")
+            ->setArray(["33", "32"]))
+```
+
+
 
 
 
@@ -1341,6 +1359,10 @@ Related
 
 History Log
 ------------------
+    
+- 1.10.1 -- 2017-11-01
+
+    - fix SokoValidationRule.setErrorMessage (private translateError function had problems)
     
 - 1.10.0 -- 2017-11-01
 

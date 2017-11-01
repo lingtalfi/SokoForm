@@ -222,7 +222,15 @@ class SokoForm implements SokoFormInterface
                                 return is_scalar($v);
                             });
 
+                            if("phone_prefix"=== $name){
+                                a($error, $tags);
+                            }
+
                             $error = $this->translateError($error, $tags);
+
+                            if("phone_prefix"=== $name){
+                                az($error);
+                            }
                             $control->addError($error);
                             $formIsValid = false;
                         }
@@ -432,17 +440,32 @@ class SokoForm implements SokoFormInterface
                 include $file;
                 if (array_key_exists($error, $translations)) {
                     $translation = $translations[$error];
-                    $keys = array_keys($tags);
-                    $values = array_values($tags);
-                    $keys = array_map(function ($v) {
-                        return "{" . $v . "}";
-                    }, $keys);
-                    return str_replace($keys, $values, $translation);
-
                 } else {
-                    $this->onTranslationFileNotFound($this->validationRulesLang);
+//                    $this->onTranslationFileNotFound($this->validationRulesLang);
+                    /**
+                     * In this case, the developer probably provides its own error message directly with the setErrorMessage
+                     * of the SokoValidationRule object.
+                     */
+                    $translation = $error;
                 }
             }
+            else{
+                /**
+                 * In this case, the developer provides its own error message directly with the setErrorMessage
+                 * of the SokoValidationRule object.
+                 */
+                $translation = $error;
+            }
+
+
+            $keys = array_keys($tags);
+            $values = array_values($tags);
+            $keys = array_map(function ($v) {
+                return "{" . $v . "}";
+            }, $keys);
+            return str_replace($keys, $values, $translation);
+
+
         }
         return $error;
     }
