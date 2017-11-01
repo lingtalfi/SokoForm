@@ -101,8 +101,9 @@ class SokoTableFormRenderer extends SokoFormRenderer
     //--------------------------------------------
     protected function doRenderInputControl(array $model, array $preferences = [])
     {
+        $attr = $this->getHtmlAtributesAsString($preferences);
         ?>
-        <tr>
+        <tr<?php echo $attr; ?>>
             <td><?php $this->doRenderLabel($model, $preferences); ?></td>
             <td>
                 <?php $this->doRenderInputWidget($model, $preferences); ?>

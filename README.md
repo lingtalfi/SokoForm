@@ -1342,6 +1342,10 @@ Related
 History Log
 ------------------
     
+- 1.8.1 -- 2017-11-01
+
+    - add attributes string on SokoTableFormRenderer.doRenderInputControl internal method
+    
 - 1.8.0 -- 2017-11-01
 
     - add SokoDateValidationRule 
