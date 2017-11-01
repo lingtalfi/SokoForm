@@ -11,4 +11,5 @@ $translations = [
     "The field is required" => "Ce champ est requis",
     "The two values aren't identical" => "Les 2 valeurs ne sont pas identiques",
     "The control {otherControl} does not exist" => "Le champ {otherControl} n'existe pas",
+    "The field doesn't match the pattern {dateFormat}" => "Ce champ doit correspondre  au format {dateFormat}",
 ];

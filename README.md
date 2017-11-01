@@ -426,6 +426,7 @@ Soko also comes with its own library of validation rules, amongst which:
 - SokoInRangeValidationRule: check that the control was posted and its value is in the range defined by $min and $max with step=$step (step defaults to 1)
 - SokoContainsBetweenXAndYDigitsValidationRule: check that the control was posted and its value contains between $min and $max digits (can be used in phone numbers validation for instance)
 - SokoIsCheckedValidationRule: alias for SokoMandatoryValidationRule (useful for single checkboxes)
+- SokoDateValidationRule: check that the control was posted and its value matches the $dateFormat
  
 
 
@@ -1340,6 +1341,10 @@ Related
 
 History Log
 ------------------
+    
+- 1.8.0 -- 2017-11-01
+
+    - add SokoDateValidationRule 
     
 - 1.7.1 -- 2017-10-31
 
