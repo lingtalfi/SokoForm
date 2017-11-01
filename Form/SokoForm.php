@@ -222,15 +222,7 @@ class SokoForm implements SokoFormInterface
                                 return is_scalar($v);
                             });
 
-                            if("phone_prefix"=== $name){
-                                a($error, $tags);
-                            }
-
                             $error = $this->translateError($error, $tags);
-
-                            if("phone_prefix"=== $name){
-                                az($error);
-                            }
                             $control->addError($error);
                             $formIsValid = false;
                         }
