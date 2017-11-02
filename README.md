@@ -432,6 +432,7 @@ Soko also comes with its own library of validation rules, amongst which:
 - SokoContainsBetweenXAndYDigitsValidationRule: check that the control was posted and its value contains between $min and $max digits (can be used in phone numbers validation for instance)
 - SokoIsCheckedValidationRule: alias for SokoMandatoryValidationRule (useful for single checkboxes)
 - SokoDateValidationRule: check that the control was posted and its value matches the $dateFormat
+- SokoTvaIntracomValidationRule: check that the control was posted and is a valid tva number for the given $countryValue and $countryLabel
  
 
 
@@ -1455,6 +1456,10 @@ Related
 
 History Log
 ------------------
+    
+- 1.14.0 -- 2017-11-02
+
+    - add SokoTvaIntracomValidationRule
     
 - 1.13.0 -- 2017-11-02
 
