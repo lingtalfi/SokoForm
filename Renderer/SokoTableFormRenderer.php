@@ -287,7 +287,7 @@ class SokoTableFormRenderer extends SokoFormRenderer
             <td></td>
             <td>
                 <?php foreach ($model['errors'] as $errorMsg): ?>
-                    <div class="soko-error"><?php echo $errorMsg; ?></div>
+                    <div class="soko-error" data-name="<?php echo $model['name']; ?>"><?php echo $errorMsg; ?></div>
                 <?php endforeach; ?>
             </td>
         </tr>
