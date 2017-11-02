@@ -376,7 +376,7 @@ $form->addValidationRule("password", SokoValidationRule::create()
      * If value is null, it means that the control was not posted.
      * This behaviour might be useful in the case of checkboxes.
      */
-    ->setValidationFunction(function ($value, array &$preferences, &$error = null, SokoFormInterface $form) {
+    ->setValidationFunction(function ($value, array &$preferences, &$error = null, SokoFormInterface $form, SokoControlInterface $control) {
         $value = (string)$value;
         if (strlen($value) < $preferences['minChar']) {
             $errors[] = "This field requires at least {minChar} characters";
@@ -407,6 +407,10 @@ The validation function does quite a lot here:
         That's because in some cases, you need to access other controls (for their value or their labels maybe).
         For instance, the "Type your password again" needs to check whether or not the values of password and password2
         are identical.
+        
+- the control instance is passed.
+        That's because in some cases, you need to make a quick test for a specific control (so accessing $control->getName()
+        makes it easier)
         
 - the preferences array is passed by reference, so that the function can add its own "tags".
         For instance in the InArray validation rule, we want to display the message:
@@ -1451,6 +1455,10 @@ Related
 
 History Log
 ------------------
+    
+- 1.12.0 -- 2017-11-02
+
+    - the SokoValidationRule.setValidationFunction method now accepts a SokoControlInterface as its fifth argument
     
 - 1.11.0 -- 2017-11-02
 

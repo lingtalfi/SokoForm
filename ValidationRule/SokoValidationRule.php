@@ -4,6 +4,7 @@
 namespace SokoForm\ValidationRule;
 
 
+use SokoForm\Control\SokoControlInterface;
 use SokoForm\Form\SokoFormInterface;
 
 class SokoValidationRule implements SokoValidationRuleInterface
@@ -17,7 +18,7 @@ class SokoValidationRule implements SokoValidationRuleInterface
     {
         $this->errorMessages['mandatory'] = "This field is mandatory";
         $this->preferences = [];
-        $this->validationFunction = function ($value, array &$preferences, &$error = null, SokoFormInterface $form) {
+        $this->validationFunction = function ($value, array &$preferences, &$error = null, SokoFormInterface $form, SokoControlInterface $control) {
             return true;
         };
     }

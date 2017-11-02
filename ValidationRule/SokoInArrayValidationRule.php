@@ -4,6 +4,7 @@
 namespace SokoForm\ValidationRule;
 
 
+use SokoForm\Control\SokoControlInterface;
 use SokoForm\Exception\SokoFormException;
 use SokoForm\Form\SokoFormInterface;
 
@@ -20,7 +21,7 @@ class SokoInArrayValidationRule extends SokoValidationRule
 
         $this->preferences['array'] = [];
 
-        $this->setValidationFunction(function ($value, array &$preferences, &$error = null, SokoFormInterface $form) {
+        $this->setValidationFunction(function ($value, array &$preferences, &$error = null, SokoFormInterface $form, SokoControlInterface $control) {
             if (true === $this->checkSubmitted($value, $error)) {
 
 

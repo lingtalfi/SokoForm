@@ -4,6 +4,7 @@
 namespace SokoForm\ValidationRule;
 
 
+use SokoForm\Control\SokoControlInterface;
 use SokoForm\Form\SokoFormInterface;
 
 class SokoInRangeValidationRule extends SokoValidationRule
@@ -21,7 +22,7 @@ class SokoInRangeValidationRule extends SokoValidationRule
         $this->preferences['max'] = 10;
         $this->preferences['step'] = 1;
 
-        $this->setValidationFunction(function ($value, array &$preferences, &$error = null, SokoFormInterface $form) {
+        $this->setValidationFunction(function ($value, array &$preferences, &$error = null, SokoFormInterface $form, SokoControlInterface $control) {
             if (true === $this->checkSubmitted($value, $error)) {
                 $range = range($this->preferences['min'], $this->preferences['max'], $this->preferences['step']);
                 if (!in_array($value, $range)) {

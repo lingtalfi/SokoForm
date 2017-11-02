@@ -15,7 +15,7 @@ interface SokoValidationRuleInterface
     /**
      * @return \Closure, function returning a boolean, and which signature is:
      *
-     *                      function ($value, array &$preferences, &$error = null, SokoFormInterface $form)
+     *                      function ($value, array &$preferences, &$error = null, SokoFormInterface $form, SokoControlInterface $control)
      */
     public function getValidationFunction();
 }

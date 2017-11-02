@@ -208,6 +208,7 @@ class SokoForm implements SokoFormInterface
                             &$preferences,
                             &$error,
                             $this,
+                            $control,
                         ]);
 
                         // in case of failure, we translate the error message(s) and

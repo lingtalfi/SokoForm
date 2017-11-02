@@ -5,6 +5,7 @@ namespace SokoForm\ValidationRule;
 
 
 use Bat\ValidationTool;
+use SokoForm\Control\SokoControlInterface;
 use SokoForm\Form\SokoFormInterface;
 
 class SokoMandatoryValidationRule extends SokoValidationRule
@@ -15,7 +16,7 @@ class SokoMandatoryValidationRule extends SokoValidationRule
     {
         parent::__construct();
 
-        $this->setValidationFunction(function ($value, array &$preferences, &$error = null, SokoFormInterface $form) {
+        $this->setValidationFunction(function ($value, array &$preferences, &$error = null, SokoFormInterface $form, SokoControlInterface $control) {
             if (true === $this->checkSubmitted($value, $error)) {
                 return true;
             } else {

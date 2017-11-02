@@ -4,6 +4,7 @@
 namespace SokoForm\ValidationRule;
 
 
+use SokoForm\Control\SokoControlInterface;
 use SokoForm\Form\SokoFormInterface;
 
 class SokoSameAsValidationRule extends SokoValidationRule
@@ -18,7 +19,7 @@ class SokoSameAsValidationRule extends SokoValidationRule
         $this->setErrorMessage("The control {otherControl} does not exist", "aux");
         $this->preferences['otherControl'] = null;
 
-        $this->setValidationFunction(function ($value, array &$preferences, &$error = null, SokoFormInterface $form) {
+        $this->setValidationFunction(function ($value, array &$preferences, &$error = null, SokoFormInterface $form, SokoControlInterface $control) {
             if (true === $this->checkSubmitted($value, $error)) {
                 $otherControl = $preferences['otherControl'];
                 if (false !== $control = $form->getControl($otherControl, false, false)) {
