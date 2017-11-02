@@ -1456,6 +1456,10 @@ Related
 History Log
 ------------------
     
+- 1.12.1 -- 2017-11-02
+
+    - fix SokoInArrayValidationRule isAssociative heuristic
+    
 - 1.12.0 -- 2017-11-02
 
     - the SokoValidationRule.setValidationFunction method now accepts a SokoControlInterface as its fifth argument

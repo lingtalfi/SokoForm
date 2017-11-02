@@ -22,6 +22,8 @@ class SokoInArrayValidationRule extends SokoValidationRule
         $this->preferences['array'] = [];
 
         $this->setValidationFunction(function ($value, array &$preferences, &$error = null, SokoFormInterface $form, SokoControlInterface $control) {
+
+
             if (true === $this->checkSubmitted($value, $error)) {
 
 
@@ -40,8 +42,7 @@ class SokoInArrayValidationRule extends SokoValidationRule
                         $values = $array;
                     }
 
-
-                    if (!in_array($value, $values)) {
+                    if (!in_array($value, $values, true)) {
                         $preferences['sArray'] = implode(', ', $labels);
                         $error = $this->getErrorMessage();
                         return false;
@@ -80,7 +81,9 @@ class SokoInArrayValidationRule extends SokoValidationRule
     private function isAssociative(array $array)
     {
         foreach ($array as $k => $v) {
-            return (false === is_int($k));
+            if (false === is_int($k)) {
+                return true;
+            }
         }
         return false;
     }
