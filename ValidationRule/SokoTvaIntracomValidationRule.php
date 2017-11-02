@@ -20,40 +20,40 @@ class SokoTvaIntracomValidationRule extends SokoValidationRule
 
 
     /**
-     * This array identifies just the intracom number without the 2 letters country prefix.
+     * This array identifies just the intracom number with the 2 letters country prefix.
      * The source used is this one, which I believe is the most accurate I found:
      * http://ec.europa.eu/taxation_customs/vies/faqvies.do#item_11
      *
      */
     public static $country2Pattern = [
-        'AT' => '!^U[0-9]{8}$!',
-        'BE' => '!^0[0-9]{9}$!',
-        'BG' => '!^([0-9]{9}|[0-9][0-9]{9})$!',
-        'CY' => '!^([0-9][0-9]{7}[a-zA-Z]|[a-zA-Z][0-9]{7}[a-zA-Z]|[a-zA-Z][0-9]{7}[0-9])$!',
-        'CZ' => '!^[0-9]{8,10}$!',
-        'DE' => '!^[0-9]{9}$!',
-        'DK' => '!^[0-9]{8}$!',
-        'EE' => '!^[0-9]{9}$!',
-        'GR' => '!^[0-9]{9}$!',
-        'ES' => '!^[a-zA-Z0-9][0-9]{7}[a-zA-Z0-9]$!',
-        'FI' => '!^[0-9]{8}$!',
-        'FR' => '!^[a-zA-Z0-9][a-zA-Z0-9][0-9]{9}$!',
-        'GB' => '!^[0-9]{9}$!',
-        'HR' => '!^[0-9]{11}$!',
-        'HU' => '!^[0-9]{8}$!',
-        'IE' => '!^[0-9]{7}[a-zA-Z][a-zA-Z]?$!',
-        'IT' => '!^[0-9]{11}$!',
-        'LT' => '!^([0-9]{9}|[0-9]{12})$!',
-        'LU' => '!^[0-9]{8}$!',
-        'LV' => '!^[0-9]{11}$!',
-        'MT' => '!^[0-9]{8}$!',
-        'NL' => '!^[0-9]{11}B$!',
-        'PL' => '!^[0-9]{10}$!',
-        'PT' => '!^[0-9]{9}$!',
-        'RO' => '!^[0-9]{2,10}$!',
-        'SE' => '!^[0-9]{10}01$!',
-        'SI' => '!^[0-9]{8}$!',
-        'SK' => '!^[0-9]{10}$!',
+        'AT' => '!^ATU[0-9]{8}$!',
+        'BE' => '!^BE0[0-9]{9}$!',
+        'BG' => '!^(BG[0-9]{9}|BG0[0-9]{9})$!',
+        'CY' => '!^CY[0-9]{8}[a-zA-Z]$!',
+        'CZ' => '!^CZ[0-9]{8,10}$!',
+        'DE' => '!^DE[0-9]{9}$!',
+        'DK' => '!^DK[0-9]{8}$!',
+        'EE' => '!^EE[0-9]{9}$!',
+        'GR' => '!^EL[0-9]{9}$!',
+        'ES' => '!^(ES[0-9][0-9]{7}[a-zA-Z]|ES[a-zA-Z][0-9]{7}[a-zA-Z]|ES[a-zA-Z][0-9]{7}[0-9])$!',
+        'FI' => '!^FI[0-9]{8}$!',
+        'FR' => '!^FR[a-zA-Z0-9][a-zA-Z0-9][0-9]{9}$!',
+        'GB' => '!^(GB[0-9]{9}|GB[0-9]{12}|GBGD[0-9]{3}|GBHA[0-9]{3})$!',
+        'HR' => '!^HR[0-9]{11}$!',
+        'HU' => '!^HU[0-9]{8}$!',
+        'IE' => '!^(IE[0-9][0-9a-z+*A-Z][0-9]{5}[a-zA-Z]|IE[0-9]{7}WI)$!',
+        'IT' => '!^IT[0-9]{11}$!',
+        'LT' => '!^(LT[0-9]{9}|LT[0-9]{12})$!',
+        'LU' => '!^LU[0-9]{8}$!',
+        'LV' => '!^LV[0-9]{11}$!',
+        'MT' => '!^MT[0-9]{8}$!',
+        'NL' => '!^NL[0-9]{9}B[0-9]{2}$!',
+        'PL' => '!^PL[0-9]{10}$!',
+        'PT' => '!^PT[0-9]{9}$!',
+        'RO' => '!^RO[0-9]{2,10}$!',
+        'SE' => '!^SE[0-9]{12}$!',
+        'SI' => '!^SI[0-9]{8}$!',
+        'SK' => '!^SK[0-9]{10}$!',
     ];
 
     private $useWebservice;
@@ -115,12 +115,9 @@ class SokoTvaIntracomValidationRule extends SokoValidationRule
             return false;
         }
         $pattern = self::$country2Pattern[$country];
-        a($pattern, $country, $tvaNumber);
-az("kkd", preg_match($pattern, $tvaNumber));
         if (preg_match($pattern, $tvaNumber)) {
 
             if ('FR' === $country) {
-az("kk");
                 $cle = (int)substr($tvaNumber, 2, 2);
                 $siren = substr($tvaNumber, 4);
                 $computedKey = $this->computeKey($siren);
@@ -128,15 +125,8 @@ az("kk");
                     return false;
                 }
             }
-
             if (true === $this->useWebservice) {
-
-                $intracomNumber = $tvaNumber;
-                if ('FR' === $intracomNumber) {
-                    $intracomNumber = substr($intracomNumber, 2);
-                }
-
-                az("p", $intracomNumber);
+                $intracomNumber = substr($tvaNumber, 2);
                 if (false === $this->checkTvaIntracomUsingVies($intracomNumber, $country)) {
                     return false;
                 }

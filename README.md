@@ -1470,6 +1470,10 @@ Related
 History Log
 ------------------
     
+- 1.14.3 -- 2017-11-02
+
+    - fix SokoTvaIntracomValidationRule (updated all tva patterns)
+    
 - 1.14.2 -- 2017-11-02
 
     - improve SokoTvaIntracomValidationRule heuristics, now can use a webservice
