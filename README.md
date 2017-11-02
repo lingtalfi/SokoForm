@@ -22,7 +22,7 @@ Or just download it and place it where you want otherwise.
 
 
 
-What's the nee philosophy behind Soko form?
+What's the philosophy behind Soko form?
 =============================================
 
 With Soko form, the view (SokoFormRenderer in particular) has a lot of power:
@@ -48,6 +48,7 @@ The strategy is quite simple:
 That's it fot the basics, but then, we can do extra things such as:
 
 - add notification message to the form
+- add the SokoFormErrorRemovalTool.js script to remove user errors as she/he fixes them
 
  
 At the end of this document, I will provide the complete and functional example. 
@@ -1068,7 +1069,83 @@ Couple of things that make life even easier for the developers:
 ```        
  
  
- 
+SokoFormErrorRemovalTool.js remove user errors as she/he fixes them
+============================== 
+
+
+The errorRemovalTool is a thin javascript layer on top of a soko form that removes
+the form errors dynamically as the user fixes them.
+
+Find the script in this repository here: **assets/js/soko-form-error-removal-tool.js**.
+
+
+How to use it
+------------------
+Here is how to use it:
+
+
+- include jquery in your view.
+- include the js source in your view.
+- then paste this in your code somewhere:
+
+```js
+document.addEventListener("DOMContentLoaded", function (event) {
+    $(document).ready(function () {
+        var jForm = $('#widget-create-account');
+        var errorRemoval = SokoFormErrorRemovalTool.getInst("createAccount", { 
+            context: jForm
+        });
+        errorRemoval.refresh();
+    });
+});
+```
+
+Note: in this case we create a non existing instance **createAccount** with parameters.
+This will memorize our instance for later uses.
+
+
+
+If you have custom control and your error message doesn't go away automatically (like a datepicker plugin
+for instance), then you can always make the error message vanish programmatically using the
+removeErrorByControlName method, like so:
+
+```js
+$('.datepicker').datepicker({
+    onSelect: function (date, obj) {
+        var errorRemoval = SokoFormErrorRemovalTool.getInst("createAccount"); // note the tool identifier here (createAccount)
+        errorRemoval.removeErrorByControlName("birthday");
+    }
+});
+
+```
+
+Note: in this case, we re-use the **createAccount** instance of the tool created earlier, that's why
+we don't need to pass parameters.
+
+
+Note2: if having all the javascript code in one place is an option, then you don't need to use the **getInst**
+method at all and can just use the reference to the instance you create manually:
+
+```js
+var errorRemoval = new SokoFormErrorRemovalTool();
+errorRemoval.refresh();
+// then later...
+errorRemoval.removeErrorByControlName("birthday");
+
+```
+
+
+
+Internals
+----------------
+The errorRemovalTool internally leverages intricate structure details of the sokoForm:
+- the fact that a soko error has the .soko-error css class
+- the fact that a soko error has a data-name attribute set to the control name
+- the fact that named items (created with SokoChoiceControl[type=listWithNames] have
+         a data-control-name attribute set to the control name
+
+
+
 
 
 The final example
@@ -1359,6 +1436,10 @@ Related
 
 History Log
 ------------------
+    
+- 1.11.0 -- 2017-11-02
+
+    - add SokoFormErrorRemovalTool js tool
     
 - 1.10.2 -- 2017-11-02
 
