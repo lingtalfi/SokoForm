@@ -106,6 +106,11 @@ class SokoTvaIntracomValidationRule extends SokoValidationRule
     }
 
 
+    public static function countryIsInUe($country)
+    {
+        return (array_key_exists($country, self::$country2Pattern));
+    }
+
     //--------------------------------------------
     //
     //--------------------------------------------

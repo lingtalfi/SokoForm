@@ -1470,6 +1470,10 @@ Related
 History Log
 ------------------
     
+- 1.15.0 -- 2017-11-02
+
+    - add SokoTvaIntracomValidationRule::countryIsInUe method
+    
 - 1.14.3 -- 2017-11-02
 
     - fix SokoTvaIntracomValidationRule (updated all tva patterns)
