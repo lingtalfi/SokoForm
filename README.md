@@ -516,7 +516,7 @@ Reacting to the form is easy:
 
 
 ```php
-$form->process(function(array $values, SokoFormInterface $form){
+$form->process(function(array $filteredValues, SokoFormInterface $form){
     // do something with the values and or the form here
 });
 
@@ -1394,32 +1394,47 @@ $r = SokoDemoFormRenderer::create()
 
 
 <body>
-<form <?php $r->formAttributes(); ?>>
-    <?php $r->notifications(); ?>
-    <h2>A soko form</h2>
-    <table>
-        <?php $r->render('account_type'); ?>
-        <?php $r->render('email'); ?>
-        <?php $r->render('password'); ?>
-        <?php $r->render('password2'); ?>
-        <?php $r->render('gender'); ?>
-        <?php $r->render('last_name'); ?>
-        <?php $r->render('first_name'); ?>
+<div id="mywidget">
+    <form <?php $r->formAttributes(); ?>>
+        <?php $r->notifications(); ?>
+        <h2>A soko form</h2>
+        <table>
+            <?php $r->render('account_type'); ?>
+            <?php $r->render('email'); ?>
+            <?php $r->render('password'); ?>
+            <?php $r->render('password2'); ?>
+            <?php $r->render('gender'); ?>
+            <?php $r->render('last_name'); ?>
+            <?php $r->render('first_name'); ?>
+    
+            <?php $r->date3('birthday_day', 'birthday_month', 'birthday_year'); ?>
+    
+    
+            <?php $r->render('diploma'); ?>
+    
+            <?php $r->phone('phone_indicator', 'phone'); ?>
+    
+            <?php $r->render('abos'); ?>
+            <?php $r->render('i_agree'); ?>
+    
+            <?php $r->submitKey(); ?>
+            <?php $r->submitButton(); ?>
+        </table>
+    </form>
+</div>
 
-        <?php $r->date3('birthday_day', 'birthday_month', 'birthday_year'); ?>
-
-
-        <?php $r->render('diploma'); ?>
-
-        <?php $r->phone('phone_indicator', 'phone'); ?>
-
-        <?php $r->render('abos'); ?>
-        <?php $r->render('i_agree'); ?>
-
-        <?php $r->submitKey(); ?>
-        <?php $r->submitButton(); ?>
-    </table>
-</form>
+<script>
+// note: the js code below is optional, but it will enhance the user experience
+document.addEventListener("DOMContentLoaded", function (event) {
+    $(document).ready(function () {
+        var jContext = $('#mywidget');
+        var errorRemoval = new SokoFormErrorRemovalTool({ 
+            context: jContext
+        });
+        errorRemoval.refresh();
+    });
+});
+</script>
 </body>
 </html>
 
