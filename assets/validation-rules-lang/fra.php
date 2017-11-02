@@ -12,6 +12,6 @@ $translations = [
     "The two values aren't identical" => "Les 2 valeurs ne sont pas identiques",
     "The control {otherControl} does not exist" => "Le champ {otherControl} n'existe pas",
     "The field doesn't match the pattern {dateFormat}" => "Ce champ doit correspondre  au format {dateFormat}",
-    "The TVA intracom number isn't valid for the selected country ({countryLabel})" => "Le numéro de TVA intracom fournit n'est pas valide par rapport au pays sélectionné ({countryLabel})",
+    "The TVA intracom number isn't valid for the selected country ({countryLabel})" => "Le numéro de TVA intracom fourni n'est pas valide par rapport au pays sélectionné ({countryLabel})",
     "This is not a valid siret number" => "Ce numéro de siret n'est pas valide",
 ];
