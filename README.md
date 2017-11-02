@@ -21,6 +21,19 @@ uni import SokoForm
 Or just download it and place it where you want otherwise.
 
 
+Dependencies
+------------------
+
+If you use the SokoTvaIntracomValidationRule with the webservice to check tva intracom number,
+then you will need those two extra composer dependencies:
+
+- symfony/dom-crawler:* 
+- symfony/css-selector:*
+
+
+
+
+
 
 What's the philosophy behind Soko form?
 =============================================
@@ -1456,6 +1469,10 @@ Related
 
 History Log
 ------------------
+    
+- 1.14.2 -- 2017-11-02
+
+    - improve SokoTvaIntracomValidationRule heuristics, now can use a webservice
     
 - 1.14.1 -- 2017-11-02
 

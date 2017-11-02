@@ -13,4 +13,5 @@ $translations = [
     "The control {otherControl} does not exist" => "The control {otherControl} does not exist",
     "The field doesn't match the pattern {dateFormat}" => "The field doesn't match the pattern {dateFormat}",
     "The TVA intracom number isn't valid for the selected country ({countryLabel})" => "The TVA intracom number isn't valid for the selected country ({countryLabel})",
+    "This is not a valid siret number" => "This is not a valid siret number",
 ];
