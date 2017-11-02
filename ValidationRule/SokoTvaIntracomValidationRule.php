@@ -12,40 +12,48 @@ use Symfony\Component\DomCrawler\Crawler;
 
 /**
  * Source: http://www.tvaintracommunautaire.eu/
+ * Source: http://ec.europa.eu/taxation_customs/vies/vatRequest.html
+ * Source: http://ec.europa.eu/taxation_customs/vies/faqvies.do#item_11
  */
 class SokoTvaIntracomValidationRule extends SokoValidationRule
 {
 
+
+    /**
+     * This array identifies just the intracom number without the 2 letters country prefix.
+     * The source used is this one, which I believe is the most accurate I found:
+     * http://ec.europa.eu/taxation_customs/vies/faqvies.do#item_11
+     *
+     */
     public static $country2Pattern = [
-        'DE' => '!^[0-9]{9}$!',
         'AT' => '!^U[0-9]{8}$!',
         'BE' => '!^0[0-9]{9}$!',
-        'BG' => '!^[0-9]{9,10}$!',
-        'CY' => '!^[a-zA-Z0-9]{9}$!',
-        'HR' => '!^[0-9]{11}$!',
+        'BG' => '!^([0-9]{9}|[0-9][0-9]{9})$!',
+        'CY' => '!^([0-9][0-9]{7}[a-zA-Z]|[a-zA-Z][0-9]{7}[a-zA-Z]|[a-zA-Z][0-9]{7}[0-9])$!',
+        'CZ' => '!^[0-9]{8,10}$!',
+        'DE' => '!^[0-9]{9}$!',
         'DK' => '!^[0-9]{8}$!',
-        'ES' => '!^[a-zA-Z0-9][0-9]{7}[a-zA-Z0-9]$!',
         'EE' => '!^[0-9]{9}$!',
-        'FI' => '!^[0-9]{8}$!',
-//        'FR' => '!^[a-zA-Z0-9][a-zA-Z0-9][0-9]{9}$!',
-        'FR' => '!^FR[0-9]{9}$!i', // https://www.agecsa.com/expert_comptable_siret.html?
         'GR' => '!^[0-9]{9}$!',
+        'ES' => '!^[a-zA-Z0-9][0-9]{7}[a-zA-Z0-9]$!',
+        'FI' => '!^[0-9]{8}$!',
+        'FR' => '!^[a-zA-Z0-9][a-zA-Z0-9][0-9]{9}$!',
+        'GB' => '!^[0-9]{9}$!',
+        'HR' => '!^[0-9]{11}$!',
         'HU' => '!^[0-9]{8}$!',
         'IE' => '!^[0-9]{7}[a-zA-Z][a-zA-Z]?$!',
         'IT' => '!^[0-9]{11}$!',
-        'LV' => '!^[0-9]{11}$!',
         'LT' => '!^([0-9]{9}|[0-9]{12})$!',
         'LU' => '!^[0-9]{8}$!',
+        'LV' => '!^[0-9]{11}$!',
         'MT' => '!^[0-9]{8}$!',
         'NL' => '!^[0-9]{11}B$!',
         'PL' => '!^[0-9]{10}$!',
         'PT' => '!^[0-9]{9}$!',
-        'CZ' => '!^[0-9]{8,10}$!',
         'RO' => '!^[0-9]{2,10}$!',
-        'GB' => '!^[0-9]{9}$!',
-        'SK' => '!^[0-9]{10}$!',
-        'SI' => '!^[0-9]{8}$!',
         'SE' => '!^[0-9]{10}01$!',
+        'SI' => '!^[0-9]{8}$!',
+        'SK' => '!^[0-9]{10}$!',
     ];
 
     private $useWebservice;
@@ -107,10 +115,12 @@ class SokoTvaIntracomValidationRule extends SokoValidationRule
             return false;
         }
         $pattern = self::$country2Pattern[$country];
+        a($pattern, $country, $tvaNumber);
+az("kkd", preg_match($pattern, $tvaNumber));
         if (preg_match($pattern, $tvaNumber)) {
 
             if ('FR' === $country) {
-
+az("kk");
                 $cle = (int)substr($tvaNumber, 2, 2);
                 $siren = substr($tvaNumber, 4);
                 $computedKey = $this->computeKey($siren);
@@ -126,6 +136,7 @@ class SokoTvaIntracomValidationRule extends SokoValidationRule
                     $intracomNumber = substr($intracomNumber, 2);
                 }
 
+                az("p", $intracomNumber);
                 if (false === $this->checkTvaIntracomUsingVies($intracomNumber, $country)) {
                     return false;
                 }
