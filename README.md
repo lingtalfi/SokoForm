@@ -1470,6 +1470,10 @@ Related
 History Log
 ------------------
     
+- 1.16.1 -- 2017-11-02
+
+    - fix SokoTvaIntracomValidationRule::$$country2Pattern is now private again
+    
 - 1.16.0 -- 2017-11-02
 
     - add SokoTvaIntracomValidationRule::getUeCountries method

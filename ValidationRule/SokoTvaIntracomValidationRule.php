@@ -25,7 +25,7 @@ class SokoTvaIntracomValidationRule extends SokoValidationRule
      * http://ec.europa.eu/taxation_customs/vies/faqvies.do#item_11
      *
      */
-    public static $country2Pattern = [
+    private static $country2Pattern = [
         'AT' => '!^ATU[0-9]{8}$!',
         'BE' => '!^BE0[0-9]{9}$!',
         'BG' => '!^(BG[0-9]{9}|BG0[0-9]{9})$!',
