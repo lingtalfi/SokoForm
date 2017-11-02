@@ -255,7 +255,7 @@ class SokoTableFormRenderer extends SokoFormRenderer
 
     protected function doRenderChoiceListWithNamesItemWidget(array $itemModel, array $values)
     {
-        list($name, $val, $label) = $itemModel;
+        list($name, $val, $label, $controlName) = $itemModel;
         $id = $this->formModel['form']['name'] . "-" . CaseTool::toDog($name) . "-" . CaseTool::toDog($val);
         $val = (string)$val; // if the model provides keys as int, we need to convert them so that the === works
         $sSel = (array_key_exists($val, $values)) ? 'checked="checked"' : '';
@@ -264,6 +264,7 @@ class SokoTableFormRenderer extends SokoFormRenderer
                 id="<?php echo $id; ?>"
             <?php echo $sSel; ?>
                 type="checkbox" name="<?php echo htmlspecialchars($name); ?>"
+                data-control-name="<?php echo $controlName; ?>"
                 value="<?php echo htmlspecialchars($val); ?>">
         <label for="<?php echo $id; ?>"><?php echo $label; ?></label>
         <?php

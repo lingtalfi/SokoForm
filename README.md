@@ -1360,6 +1360,10 @@ Related
 History Log
 ------------------
     
+- 1.10.2 -- 2017-11-02
+
+    - improve SokoChoiceControl, now passes the controlName along with every item name
+    
 - 1.10.1 -- 2017-11-01
 
     - fix SokoValidationRule.setErrorMessage (private translateError function had problems)

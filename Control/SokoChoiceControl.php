@@ -57,7 +57,7 @@ class SokoChoiceControl extends SokoControl
             $type = "listWithNames";
             foreach ($this->choices as $value => $label) {
                 $name = $this->name . "[$value]";
-                $choices[] = [$name, $value, $label];
+                $choices[] = [$name, $value, $label, $this->name];
             }
         }
 
