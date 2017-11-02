@@ -1456,6 +1456,10 @@ Related
 History Log
 ------------------
     
+- 1.13.0 -- 2017-11-02
+
+    - improve SokoFormErrorRemovalTool now handles select
+    
 - 1.12.1 -- 2017-11-02
 
     - fix SokoInArrayValidationRule isAssociative heuristic

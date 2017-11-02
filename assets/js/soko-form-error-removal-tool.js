@@ -67,6 +67,15 @@ if ('undefined' === typeof SokoFormErrorRemovalTool) {
                             })(name, jControl);
                         }
                     }
+                    else if(jControl.is("select")){
+                        (function (theName, _jControl) {
+                            _jControl
+                                .off("change.dynamicErrorRemoval")
+                                .on("change.dynamicErrorRemoval", function () {
+                                    zis.removeErrorByControlName(theName);
+                                });
+                        })(name, jControl);
+                    }
 
                     //----------------------------------------
                     // CHECKBOXES (have different names for every item,
