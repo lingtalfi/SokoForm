@@ -111,6 +111,11 @@ class SokoTvaIntracomValidationRule extends SokoValidationRule
         return (array_key_exists($country, self::$country2Pattern));
     }
 
+    public static function getUeCountries()
+    {
+        return array_keys(self::$country2Pattern);
+    }
+
     //--------------------------------------------
     //
     //--------------------------------------------

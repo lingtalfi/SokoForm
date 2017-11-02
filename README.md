@@ -1470,6 +1470,10 @@ Related
 History Log
 ------------------
     
+- 1.16.0 -- 2017-11-02
+
+    - add SokoTvaIntracomValidationRule::getUeCountries method
+    
 - 1.15.0 -- 2017-11-02
 
     - add SokoTvaIntracomValidationRule::countryIsInUe method
