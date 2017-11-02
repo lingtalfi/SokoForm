@@ -6,6 +6,7 @@ namespace SokoForm\Form;
 
 use SokoForm\Control\SokoControlInterface;
 use SokoForm\Exception\SokoFormException;
+use SokoForm\ValidationRule\SokoValidationRuleInterface;
 
 interface SokoFormInterface
 {
@@ -71,6 +72,8 @@ interface SokoFormInterface
      */
     public function addNotification($message, $type, $title = null);
 
+
+    public function addValidationRule($controlName, SokoValidationRuleInterface $validationRule);
 
     /**
      * @return array, the model to be used by the view.

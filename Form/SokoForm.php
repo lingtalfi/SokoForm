@@ -253,6 +253,14 @@ class SokoForm implements SokoFormInterface
         }
     }
 
+
+    public function addValidationRule($controlName, SokoValidationRuleInterface $validationRule)
+    {
+        $this->validationRules[$controlName][] = $validationRule;
+        return $this;
+    }
+
+
     public function addNotification($message, $type, $title = null)
     {
         $this->notifications[] = [
@@ -367,12 +375,6 @@ class SokoForm implements SokoFormInterface
         return $this;
     }
 
-
-    public function addValidationRule($controlName, SokoValidationRuleInterface $validationRule)
-    {
-        $this->validationRules[$controlName][] = $validationRule;
-        return $this;
-    }
 
     public function setName($name)
     {
