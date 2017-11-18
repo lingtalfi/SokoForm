@@ -58,7 +58,7 @@ The strategy is quite simple:
 - display the form object
 
 
-That's it fot the basics, but then, we can do extra things such as:
+That's it for the basics, but then, we can do extra things such as:
 
 - add notification message to the form
 - add the SokoFormErrorRemovalTool.js script to remove user errors as she/he fixes them
