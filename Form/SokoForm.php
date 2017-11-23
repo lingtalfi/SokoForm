@@ -209,6 +209,7 @@ class SokoForm implements SokoFormInterface
                             &$error,
                             $this,
                             $control,
+                            $context,
                         ]);
 
                         // in case of failure, we translate the error message(s) and
@@ -443,8 +444,7 @@ class SokoForm implements SokoFormInterface
                      */
                     $translation = $error;
                 }
-            }
-            else{
+            } else {
                 /**
                  * In this case, the developer provides its own error message directly with the setErrorMessage
                  * of the SokoValidationRule object.

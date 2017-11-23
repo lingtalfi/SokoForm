@@ -1470,6 +1470,10 @@ Related
 History Log
 ------------------
     
+- 1.17.0 -- 2017-11-23
+
+    - update SokoForm now passes context to SokoValidationRuleInterface
+    
 - 1.16.1 -- 2017-11-02
 
     - fix SokoTvaIntracomValidationRule::$$country2Pattern is now private again
