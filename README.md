@@ -1387,6 +1387,10 @@ Related
 History Log
 ------------------
     
+- 1.19.0 -- 2017-11-24
+
+    - add SokoTableFormRenderer style=checkbox preference for rendering choice control
+    
 - 1.18.0 -- 2017-11-24
 
     - update SokoForm now accept formModel as input
