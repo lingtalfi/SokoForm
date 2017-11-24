@@ -1470,6 +1470,10 @@ Related
 History Log
 ------------------
     
+- 1.18.0 -- 2017-11-24
+
+    - update SokoForm now accept formModel as input
+    
 - 1.17.0 -- 2017-11-23
 
     - update SokoForm now passes context to SokoValidationRuleInterface

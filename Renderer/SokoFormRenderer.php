@@ -12,9 +12,9 @@ use SokoForm\Form\SokoFormInterface;
 class SokoFormRenderer
 {
     /**
-     * @var $form SokoFormInterface
+     * @var $form SokoFormInterface|array, the form model
      */
-    protected $form;
+    private $form;
     protected $formModel;
 
 
@@ -146,7 +146,7 @@ class SokoFormRenderer
     //--------------------------------------------
     //
     //--------------------------------------------
-    public function setForm(SokoFormInterface $form)
+    public function setForm($form)
     {
         $this->form = $form;
         return $this;
@@ -279,7 +279,12 @@ class SokoFormRenderer
         if (null === $this->formModel) {
             if (null !== $this->form) {
 
-                $model = $this->form->getModel();
+                if ($this->form instanceof SokoFormInterface) {
+                    $model = $this->form->getModel();
+                } else {
+                    $model = $this->form;
+                }
+
                 //--------------------------------------------
                 // SHAPE THE MODEL ACCORDING TO THE CONFIGURATION
                 //--------------------------------------------
