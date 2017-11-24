@@ -67,6 +67,31 @@ That's it for the basics, but then, we can do extra things such as:
 At the end of this document, I will provide the complete and functional example. 
 
 
+But before we start, we need to agree on a definition of the form model.
+
+
+
+The form model
+===================
+2017-11-24
+
+
+The form model is the array representing the form at any time.
+It is created by the Model (M of Mvc) and passed to the view (V of Mvc),
+so it's very important that both sides agree on a common format.
+
+In fact, the SokoForm object that we will see later is just an Api to create the form model, which means
+if you wanted to, you could use another api, or even create the form model manually, and it would still works
+with your renderers (should they use the same model too). 
+
+
+In soko, we use this model:
+
+
+- https://github.com/lingtalfi/Models/blob/master/Form/form-model.md
+
+
+
 
 
 Create a form object
@@ -349,6 +374,25 @@ This property helps us do two things:
 
 
 
+Add your own properties
+------------------------------
+
+Use the setCustomModelProperty method of the SokoControl to extend the control model with properties of
+your own:
+
+
+```php
+SokoInputControl::create()->setCustomModelProperty("myProperty", "myValue");
+```
+
+Note: the "main" properties listed below cannot be changed with this technique:
+
+- label
+- name
+- value
+- errors
+
+
  
 Adding validation rules to your form object
 -------------------------------------------
@@ -587,151 +631,24 @@ Display the form object
 
 So far, we've discussed the model part (as in MVC) of the SokoForm.
 
-But now we enter the view part.
+But now we enter the view part and display the form model.
 
 In this section we will discuss two main topics:
 
-- the model structure
 - the renderer object
 - general recommendations for rendering forms
 
-
-
-The first thing templates should do is get the model from the form, using the getModel method.
-
-
-```php
-$m = $form->getModel();
-```
-
-
-The idea of this method is to return an array containing all the necessary variables for the templates to do their things.
-
-In the background, the form method in turn will call the getModel method of every control.
-
-
-Note: It's actually important for the View objects to use only the model array rather than trying
-to use the form object and/or control objects directly.
-That's because the getModel method, in some cases, does some work in the background.
-So the only way to access the real model data is to call the getModel method.
-
-This actually is particularly true with the ChoiceControl, which model can take one of three forms
-(simple list, grouped list, named choices), and only the getModel method is capable of creating 
-the model.
-
-
-
-The model structure
------------------------
-
-It is recommended that you use the SokoFormRenderer object.
-
-The SokoFormRenderer internally updates the form model to fit its likings.
-This update only concerns the form.errors property (dot notation). 
-
-
-Here is what it looks like:
-
-
-```txt
-- form: (form related properties)
-    - name: string, the name of the form.
-                It might be used by the view to concatenate
-                for/id identifiers for instance.
-                 
-    - method: 
-    - action: 
-    - enctype: 
-    - attributeString: 
-            it's recommended that you only display this attributeString, and forget about 
-            the method, action and enctype properties  
-    - !errors: array of translated error messages.
-                
-                THIS IS ONLY ADDED IF YOU USE THE SokoFormRenderer class (otherwise the property simply
-                doesn't exist at all). 
-                
-                This array is filled only if the errorDisplayMode property
-                is set to a form level value (see the "Configuring the renderer" section of this document
-                for more info), otherwise it's empty
-                
-    - notifications: array of notification.
-                    Each notification is a notification model as defined here (https://github.com/lingtalfi/Models/blob/master/Notification/NotificationsModel.php).
-                    Or see the "Add notification messages to the form" section below for more details.
-     
-- controls:  (controls related properties)
-    - $controlName: 
-        - class: string, the name of the class. This can be used by the view to "guess" the type of control to display.
-                        Only the short name of the class is used (i.e. not the whole path, just 
-                        the last bit of the path, like SokoInputControl for instance).
-        
-        - label: null|string, null if not set. It's recommended that we always set the label, 
-                even if the view decides to not display it. 
-                            
-        - name: the html name property to display 
-        - value: the value of the control, it can be null, a string, or
-                an array (in case of multiple checkboxes for instance)
-        - errors: an array of error messages bound to the control
-        - ...plus, potential other properties depending on the type and your needs
-```
-
-
-Let's now see the specific control properties:
-
-
-### Input control specific properties
-
-```txt
-- placeholder: null|string, null if not set
-- type: string (text|textarea|hidden|password|...your own types)
-```
-
-
-### Choice control specific properties
-
-```txt
-- type: string (list|listGroup|listWithNames) 
-- choices: array, the structure depends on the type property.
-     - list: an array of $value to $label 
-     - listGroup: an array of $groupLabel to lists (each list being an array of $value => $label) 
-     - listWithNames: an array of [$name, $value, $label] 
-```
-
-
-### File control specific properties
-
-```txt
-- type: string (ajax|static|...own of your own), default=static
-            if ajax, this means the control will use an ajax technique to upload the file
-            if static, this means the control will use the regular php upload file system.
-- accept: null|string, null if not set. Same as html accept attribute otherwise
-```
-
-
-### Add your own properties
-
-Use the setCustomModelProperty method of the SokoControl to extend the control model with properties of
-your own:
-
-
-```php
-SokoInputControl::create()->setCustomModelProperty("myProperty", "myValue");
-```
-
-Note: the "main" properties listed below cannot be changed with this technique:
-
-- label
-- name
-- value
-- errors
 
 
 
 The renderer object
 ----------------------
 
-The renderer object is a helper provided by soko to help you display your soko form.
+The renderer object is an object used to render a form model. 
+Soko provides a default SokoRenderer object to help you with this task.
 
-You don't have to use the soko renderer object to display a form, but it might save you some time.
+
+You don't have to use the soko renderer object to display a form, but it can help you getting started.
 
 
 In this section, we will discuss the following topics:
