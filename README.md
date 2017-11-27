@@ -85,7 +85,7 @@ if you wanted to, you could use another api, or even create the form model manua
 with your renderers (should they use the same model too). 
 
 
-In soko, we use this model in version 1.1.0:
+In soko, we use this model in version 1.2.0:
 
 
 - https://github.com/lingtalfi/Models/blob/master/Form/form-model.md
@@ -1386,6 +1386,10 @@ Related
 
 History Log
 ------------------
+    
+- 1.21.0 -- 2017-11-27
+
+    - update SokoForm, now is compliant with formModel 1.2.0
     
 - 1.20.1 -- 2017-11-27
 

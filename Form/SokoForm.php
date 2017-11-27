@@ -76,8 +76,8 @@ class SokoForm implements SokoFormInterface
         $this->name = "sokoform";
         $this->method = "post";
         $this->action = "";
-        $this->id = "";
-        $this->class = "";
+        $this->id = null;
+        $this->class = null;
         $this->enctype = null;
         $this->controls = [];
         $this->notifications = [];
@@ -124,11 +124,11 @@ class SokoForm implements SokoFormInterface
             'action' => $this->action,
         ];
 
-        if ('' !== $this->id) {
+        if (null !== $this->id) {
             $attr['id'] = $this->id;
         }
 
-        if ('' !== $this->class) {
+        if (null !== $this->class) {
             $attr['class'] = $this->class;
         }
 
