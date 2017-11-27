@@ -1387,6 +1387,10 @@ Related
 History Log
 ------------------
     
+- 1.20.1 -- 2017-11-27
+
+    - fix SokoForm erroneous returned model
+    
 - 1.20.0 -- 2017-11-27
 
     - update SokoForm, now is compliant with formModel 1.1.0

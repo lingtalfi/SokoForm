@@ -306,18 +306,6 @@ class SokoForm implements SokoFormInterface
         $this->prepare();
         if (null === $this->model) {
 
-            //--------------------------------------------
-            // PREPARING FORM PART
-            //--------------------------------------------
-            $formAttributes = [
-                'method' => $this->method,
-                'action' => $this->action,
-            ];
-            if (null !== $this->enctype) {
-                $formAttributes['enctype'] = $this->enctype;
-            }
-            $attrString = StringTool::htmlAttributes($formAttributes);
-
 
             //--------------------------------------------
             // NOW PREPARING CONTROL PARTS
@@ -338,7 +326,10 @@ class SokoForm implements SokoFormInterface
                     'method' => $this->method,
                     'action' => $this->action,
                     'enctype' => $this->enctype,
-                    'attributeString' => $attrString,
+                    'id' => $this->id,
+                    'class' => $this->class,
+                    'attributeString' => $this->getFormAttributesAsString(),
+                    'attributes' => $this->getAttributes(),
                     'errors' => [],
                     'notifications' => $this->notifications,
                 ],
