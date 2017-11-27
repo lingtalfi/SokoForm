@@ -21,6 +21,10 @@ interface SokoFormInterface
 
     public function getEnctype();
 
+    public function getId(); // the css id
+
+    public function getClass(); // the css class
+
     /**
      * @return string, containing the following attributes:
      * - method
@@ -28,6 +32,8 @@ interface SokoFormInterface
      * - ?enctype, depending on whether or not it is set
      */
     public function getFormAttributesAsString();
+
+    public function getAttributes();
 
 
 
@@ -76,9 +82,11 @@ interface SokoFormInterface
     public function addValidationRule($controlName, SokoValidationRuleInterface $validationRule);
 
     /**
-     * @return array, the model to be used by the view.
+     * @return array:formModel, the model to be used by the view.
+     *
      *                  Note: the view should use the model only, not the object.
      *                  See documentation for more info.
+     *
      */
     public function getModel();
 

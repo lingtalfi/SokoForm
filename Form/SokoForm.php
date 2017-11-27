@@ -18,6 +18,8 @@ class SokoForm implements SokoFormInterface
     private $method;
     private $action;
     private $enctype;
+    private $id;
+    private $class;
     private $controls;
     private $validationRules;
     private $notifications;
@@ -74,6 +76,8 @@ class SokoForm implements SokoFormInterface
         $this->name = "sokoform";
         $this->method = "post";
         $this->action = "";
+        $this->id = "";
+        $this->class = "";
         $this->enctype = null;
         $this->controls = [];
         $this->notifications = [];
@@ -98,21 +102,45 @@ class SokoForm implements SokoFormInterface
         return $this->action;
     }
 
+    public function getId()
+    {
+        return $this->id;
+    }
+
+    public function getClass()
+    {
+        return $this->class;
+    }
+
     public function getEnctype()
     {
         return $this->enctype;
     }
 
-    public function getFormAttributesAsString()
+    public function getAttributes()
     {
         $attr = [
             'method' => $this->method,
             'action' => $this->action,
         ];
+
+        if ('' !== $this->id) {
+            $attr['id'] = $this->id;
+        }
+
+        if ('' !== $this->class) {
+            $attr['class'] = $this->class;
+        }
+
         if (null !== $this->enctype) {
             $attr['enctype'] = $this->enctype;
         }
-        return StringTool::htmlAttributes($attr);
+        return $attr;
+    }
+
+    public function getFormAttributesAsString()
+    {
+        return StringTool::htmlAttributes($this->getAttributes());
     }
 
     public function getControl($controlName, $throwEx = true, $default = null)
