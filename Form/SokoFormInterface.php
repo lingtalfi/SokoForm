@@ -54,6 +54,8 @@ interface SokoFormInterface
      */
     public function getControls();
 
+    public function addControl(SokoControlInterface $control);
+
 
     //--------------------------------------------
     // INTERACTION

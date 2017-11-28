@@ -143,6 +143,37 @@ class SokoForm implements SokoFormInterface
         return StringTool::htmlAttributes($this->getAttributes());
     }
 
+    /**
+     * @param SokoControlInterface $control , a fully configured
+     *                          control (i.e. at least name set)
+     * @return $this
+     */
+    public function addControl(SokoControlInterface $control)
+    {
+        /**
+         * Note: this only works if the name of the control is not set after the
+         * call to addControl... should be the case in most situations but be aware
+         * that this might fail in the future maybe.
+         *
+         * Or we could just say that this method accepts only fully configured controls
+         * (and actually I just did).
+         */
+        $this->controls[$control->getName()] = $control;
+
+        /**
+         * automatically add the enctype if the form contains a regular file control
+         */
+        if ($control instanceof SokoFileControl) {
+            $type = $control->getType();
+            if ('static' === $type) {
+                $this->setEnctype("multipart/form-data");
+            }
+        }
+
+        return $this;
+    }
+
+
     public function getControl($controlName, $throwEx = true, $default = null)
     {
         $this->prepare();
@@ -364,36 +395,6 @@ class SokoForm implements SokoFormInterface
         return $this;
     }
 
-
-    /**
-     * @param SokoControlInterface $control , a fully configured
-     *                          control (i.e. at least name set)
-     * @return $this
-     */
-    public function addControl(SokoControlInterface $control)
-    {
-        /**
-         * Note: this only works if the name of the control is not set after the
-         * call to addControl... should be the case in most situations but be aware
-         * that this might fail in the future maybe.
-         *
-         * Or we could just say that this method accepts only fully configured controls
-         * (and actually I just did).
-         */
-        $this->controls[$control->getName()] = $control;
-
-        /**
-         * automatically add the enctype if the form contains a regular file control
-         */
-        if ($control instanceof SokoFileControl) {
-            $type = $control->getType();
-            if ('static' === $type) {
-                $this->setEnctype("multipart/form-data");
-            }
-        }
-
-        return $this;
-    }
 
 
     public function setName($name)
