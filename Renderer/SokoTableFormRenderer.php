@@ -4,6 +4,7 @@
 namespace SokoForm\Renderer;
 
 use Bat\CaseTool;
+use Bat\StringTool;
 
 /**
  * How to use:
@@ -18,11 +19,17 @@ class SokoTableFormRenderer extends SokoFormRenderer
     public function submitButton(array $preferences = [])
     {
         $label = $this->getPreference("label", $preferences, "Submit");
+        $attributes = $this->getPreference("attributes", $preferences, []);
+        $class = array_key_exists('class', $attributes) ? $attributes['class'] : "";
+        unset($attributes['class']);
         ?>
         <table>
             <tr>
                 <td colspan="2" class="tcenter">
-                    <button type="submit" class="lee-red-button mauto" name="not_important_submit_button">
+                    <button type="submit" class="lee-red-button mauto <?php echo $class; ?>"
+                            name="not_important_submit_button"
+                            <?php echo StringTool::htmlAttributes($attributes); ?>
+                    >
                         <?php echo $label; ?>
                     </button>
                 </td>
@@ -168,8 +175,7 @@ class SokoTableFormRenderer extends SokoFormRenderer
         $style = $this->getPreference("style", $preferences, 'select'); // select (default)|radio
         if ("radio" === $style) {
             $this->doRenderChoiceListRadioWidget($model, $preferences);
-        }
-        elseif ("checkbox" === $style) {
+        } elseif ("checkbox" === $style) {
             $this->doRenderChoiceListCheckboxWidget($model, $preferences);
         } else {
             $this->doRenderChoiceListSelectWidget($model, $preferences);
