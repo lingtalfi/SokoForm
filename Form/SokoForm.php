@@ -199,6 +199,16 @@ class SokoForm implements SokoFormInterface
     }
 
 
+    public function inject(array $context = [])
+    {
+        foreach ($this->controls as $name => $control) {
+            if (array_key_exists($name, $context)) {
+                $control->setValue($context[$name]);
+            }
+        }
+    }
+
+
     /**
      * @param callable $onSuccess
      *                      fn ( array $context, SokoFormInterface $form )
@@ -399,7 +409,6 @@ class SokoForm implements SokoFormInterface
         $this->enctype = $enctype;
         return $this;
     }
-
 
 
     public function setName($name)

@@ -77,6 +77,17 @@ interface SokoFormInterface
      */
     public function process(callable $onSuccess, array $context = null);
 
+    /**
+     * Will inject values of the context to the corresponding controls.
+     *
+     * Note that if you call the process method, you don't need to call inject before
+     * (although this wouldn't hurt)
+     *
+     * @param array $context
+     * @return mixed
+     */
+    public function inject(array $context = []);
+
 
     /**
      * Notification is an array with 3 properties, as defined here:

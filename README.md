@@ -1387,6 +1387,10 @@ Related
 History Log
 ------------------
     
+- 1.25.0 -- 2017-11-28
+
+    - add SokoFormInterface.inject method
+    
 - 1.24.0 -- 2017-11-28
 
     - add SokoFormInterface.getName method
