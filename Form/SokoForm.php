@@ -92,6 +92,12 @@ class SokoForm implements SokoFormInterface
         return new static();
     }
 
+    public function getName()
+    {
+        return $this->name;
+    }
+
+
     public function getMethod()
     {
         return $this->method;
@@ -227,7 +233,6 @@ class SokoForm implements SokoFormInterface
         // CHECKING WHETHER OR NOT THE FORM IS SUBMITTED
         //--------------------------------------------
         if (array_key_exists($this->name, $context)) { // now the form is posted
-
             /**
              * Note: I'm not sure whether the context should be filtered,
              * but I believe this is not a bad idea

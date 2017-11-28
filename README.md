@@ -1387,6 +1387,10 @@ Related
 History Log
 ------------------
     
+- 1.24.0 -- 2017-11-28
+
+    - add SokoFormInterface.getName method
+    
 - 1.23.0 -- 2017-11-28
 
     - improve SokoTableFormRenderer.submitButton method, now accept attributes

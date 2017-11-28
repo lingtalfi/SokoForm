@@ -11,6 +11,10 @@ use SokoForm\ValidationRule\SokoValidationRuleInterface;
 interface SokoFormInterface
 {
 
+    /**
+     * @return string, the form unique name
+     */
+    public function getName();
 
     //--------------------------------------------
     // FORM ATTRIBUTES
