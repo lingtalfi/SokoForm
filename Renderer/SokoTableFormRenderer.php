@@ -28,7 +28,7 @@ class SokoTableFormRenderer extends SokoFormRenderer
                 <td colspan="2" class="tcenter">
                     <button type="submit" class="lee-red-button mauto <?php echo $class; ?>"
                             name="not_important_submit_button"
-                            <?php echo StringTool::htmlAttributes($attributes); ?>
+                        <?php echo StringTool::htmlAttributes($attributes); ?>
                     >
                         <?php echo $label; ?>
                     </button>
@@ -36,6 +36,13 @@ class SokoTableFormRenderer extends SokoFormRenderer
             </tr>
         </table>
         <?php
+    }
+
+
+    public function renderControlError($controlName, array $preferences = [])
+    {
+        $model = $this->getControlModel($controlName);
+        $this->doRenderError($model, $preferences);
     }
 
     //--------------------------------------------

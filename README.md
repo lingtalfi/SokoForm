@@ -1387,6 +1387,11 @@ Related
 History Log
 ------------------
     
+- 1.26.0 -- 2017-11-29
+
+    - add SokoFormRenderer.getControlModel method
+    - add SokoTableFormRenderer.renderControlError method
+    
 - 1.25.0 -- 2017-11-28
 
     - add SokoFormInterface.inject method

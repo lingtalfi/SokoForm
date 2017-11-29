@@ -136,6 +136,16 @@ class SokoFormRenderer
         }
     }
 
+    public function getControlModel($controlName, $default = [])
+    {
+        $formModel = $this->getModel();
+        $controls = $formModel['controls'];
+        if (array_key_exists($controlName, $controls)) {
+            return $controls[$controlName];
+        }
+        return $default;
+    }
+
 
     public function setGeneralPreferences(array $preferences)
     {
