@@ -146,6 +146,16 @@ class SokoFormRenderer
         return $default;
     }
 
+    public function getFormErrors()
+    {
+        $formModel = $this->getModel();
+        $form = $formModel['form'];
+        if (array_key_exists("errors", $form)) {
+            return $form['errors'];
+        }
+        return [];
+    }
+
 
     public function setGeneralPreferences(array $preferences)
     {
@@ -307,7 +317,7 @@ class SokoFormRenderer
                  */
 
                 $controls = $model['controls'];
-                if (in_array($this->errorDisplayMode, ['formLevel', 'formLevelFirst'])) {
+                if (in_array($this->errorDisplayMode, ['formLevel', 'formLevelFirst'], true)) {
                     $formErrors = [];
                     $firstOnly = ('formLevelFirst' === $this->errorDisplayMode);
                     /**

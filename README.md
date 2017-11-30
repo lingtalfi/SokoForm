@@ -1387,6 +1387,10 @@ Related
 History Log
 ------------------
     
+- 1.27.0 -- 2017-11-30
+
+    - add SokoFormRenderer.getFormErrors method
+    
 - 1.26.0 -- 2017-11-29
 
     - add SokoFormRenderer.getControlModel method
