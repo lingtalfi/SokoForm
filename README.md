@@ -1387,6 +1387,10 @@ Related
 History Log
 ------------------
     
+- 1.28.0 -- 2017-11-30
+
+    - add SokoFileNotEmptyValidationRule
+    
 - 1.27.0 -- 2017-11-30
 
     - add SokoFormRenderer.getFormErrors method
