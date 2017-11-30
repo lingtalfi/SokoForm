@@ -1387,6 +1387,10 @@ Related
 History Log
 ------------------
     
+- 1.29.0 -- 2017-11-30
+
+    - add SokoTableFormRenderer.renderInputCheckbox method
+    
 - 1.28.0 -- 2017-11-30
 
     - add SokoFileNotEmptyValidationRule

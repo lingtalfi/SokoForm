@@ -58,6 +58,40 @@ class SokoTableFormRenderer extends SokoFormRenderer
         $this->doRenderInputControl($model, $preferences);
     }
 
+    /**
+     * With this method, a falsy value will be unchecked, and a non falsy value
+     * will be checked.
+     */
+    protected function renderInputCheckbox(array $model, array $preferences = [])
+    {
+        $attr = $this->getHtmlAtributesAsString($preferences);
+        $id = "id-cb-" . $model['name'];
+        $value = $model['value'];
+        $checked = (int)$value > 0;
+        ?>
+        <tr<?php echo $attr; ?>>
+            <td>
+                <input id="<?php echo $id; ?>" type="<?php echo $model['type']; ?>" name="<?php echo $model['name']; ?>"
+                    <?php if (null !== $model['placeholder']): ?>
+                        placeholder="<?php echo htmlspecialchars($model['placeholder']); ?>"
+                    <?php endif; ?>
+                    <?php if ($checked): ?>
+                        checked="checked"
+                    <?php endif; ?>
+                       value="<?php echo htmlspecialchars($model['value']); ?>">
+            </td>
+            <td>
+                <?php if (null !== $model['label']): ?>
+                    <label for="<?php echo $id; ?>">
+                        <?php echo $model['label']; ?>
+                    </label>
+                <?php endif; ?>
+            </td>
+        </tr>
+        <?php
+        $this->doRenderError($model, $preferences);
+    }
+
     protected function renderInputPassword(array $model, array $preferences = [])
     {
         $this->doRenderInputControl($model, $preferences);
@@ -127,6 +161,7 @@ class SokoTableFormRenderer extends SokoFormRenderer
         $this->doRenderError($model, $preferences);
     }
 
+
     protected function doRenderChoiceControl(array $model, array $preferences = [])
     {
         $attr = $this->getHtmlAtributesAsString($preferences);
@@ -151,6 +186,7 @@ class SokoTableFormRenderer extends SokoFormRenderer
                value="<?php echo htmlspecialchars($model['value']); ?>">
         <?php
     }
+
 
     protected function doRenderTextareaWidget(array $model, array $preferences = [])
     {
