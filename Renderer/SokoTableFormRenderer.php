@@ -233,6 +233,7 @@ class SokoTableFormRenderer extends SokoFormRenderer
 
             $name = $model['name'];
 
+
             $val = (string)$val; // if the model provides keys as int, we need to convert them so that the === works
             $sSel = ($value === $val) ? 'checked="checked"' : '';
             $id = $this->formModel['form']['name'] . "-" . CaseTool::toDog($name) . "-" . CaseTool::toDog($val);
@@ -295,7 +296,7 @@ class SokoTableFormRenderer extends SokoFormRenderer
         list($name, $val, $label, $controlName) = $itemModel;
         $id = $this->formModel['form']['name'] . "-" . CaseTool::toDog($name) . "-" . CaseTool::toDog($val);
         $val = (string)$val; // if the model provides keys as int, we need to convert them so that the === works
-        $sSel = (array_key_exists($val, $values)) ? 'checked="checked"' : '';
+        $sSel = (array_key_exists($val, $values) && $values[$val]) ? 'checked="checked"' : '';
         ?>
         <input
                 id="<?php echo $id; ?>"
