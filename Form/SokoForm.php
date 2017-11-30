@@ -315,6 +315,7 @@ class SokoForm implements SokoFormInterface
                     $control->setValue($context[$name]);
                 } else {
                     $filteredContext[$name] = null;
+                    $control->setValue(null);
                 }
             }
 

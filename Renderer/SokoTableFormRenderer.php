@@ -61,6 +61,9 @@ class SokoTableFormRenderer extends SokoFormRenderer
     /**
      * With this method, a falsy value will be unchecked, and a non falsy value
      * will be checked.
+     *
+     * The checkbox value can only be 1 (with this approach),
+     * and the checkbox is either posted or not.
      */
     protected function renderInputCheckbox(array $model, array $preferences = [])
     {
@@ -78,7 +81,7 @@ class SokoTableFormRenderer extends SokoFormRenderer
                     <?php if ($checked): ?>
                         checked="checked"
                     <?php endif; ?>
-                       value="<?php echo htmlspecialchars($model['value']); ?>">
+                       value="1">
             </td>
             <td>
                 <?php if (null !== $model['label']): ?>

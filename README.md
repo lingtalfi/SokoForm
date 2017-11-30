@@ -1387,6 +1387,10 @@ Related
 History Log
 ------------------
     
+- 1.30.1 -- 2017-11-30
+
+    - fix SokoTableFormRenderer.renderInputCheckbox now the value is fixed to 1
+        
 - 1.30.0 -- 2017-11-30
 
     - update SokoForm, now filteredContext returns null if the control's value isn't posted
