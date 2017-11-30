@@ -313,6 +313,8 @@ class SokoForm implements SokoFormInterface
                     // INJECTING NEW VALUES IN THE CONTROLS (data persistency)
                     //--------------------------------------------
                     $control->setValue($context[$name]);
+                } else {
+                    $filteredContext[$name] = null;
                 }
             }
 

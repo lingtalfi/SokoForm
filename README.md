@@ -1387,6 +1387,10 @@ Related
 History Log
 ------------------
     
+- 1.30.0 -- 2017-11-30
+
+    - update SokoForm, now filteredContext returns null if the control's value isn't posted
+    
 - 1.29.0 -- 2017-11-30
 
     - add SokoTableFormRenderer.renderInputCheckbox method
