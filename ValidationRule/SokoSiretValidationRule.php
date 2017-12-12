@@ -62,13 +62,18 @@ class SokoSiretValidationRule extends SokoValidationRule
     //--------------------------------------------
     public function isValidSiret($siret)
     {
+        if (empty($siret)) {
+            return false;
+        }
+        if (14 !== strlen($siret)) {
+            return false;
+        }
         return $this->isValidLuhn($siret);
     }
 
 
     private function isValidLuhn($num)
     {
-
         $num = preg_replace('/[^\d]/', '', $num);
         $sum = '';
         for ($i = strlen($num) - 1; $i >= 0; --$i) {
