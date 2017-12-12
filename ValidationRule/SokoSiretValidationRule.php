@@ -32,13 +32,14 @@ class SokoSiretValidationRule extends SokoValidationRule
         $this->setErrorMessage("This is not a valid siret number");
 
         $this->setValidationFunction(function ($value, array &$preferences, &$error = null, SokoFormInterface $form, SokoControlInterface $control) {
+
             if (true === $this->checkSubmitted($value, $error)) {
                 $countryValue = $preferences['countryValue'];
                 if ('MC' !== $countryValue) { // rules don't apply to monaco
                     if (false === $this->isValidSiret($value)) {
                         $error = $this->getErrorMessage();
+                        return false;
                     }
-                    return false;
                 }
             } else {
                 return false;

@@ -1387,6 +1387,10 @@ Related
 History Log
 ------------------
     
+- 1.30.3 -- 2017-12-12
+
+    - fix SokoSiretValidationRule illegally returning false
+    
 - 1.30.2 -- 2017-12-12
 
     - fix SokoSiretValidationRule accepting string with length different than 14

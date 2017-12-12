@@ -243,6 +243,7 @@ class SokoForm implements SokoFormInterface
         // CHECKING WHETHER OR NOT THE FORM IS SUBMITTED
         //--------------------------------------------
         if (array_key_exists($this->name, $context)) { // now the form is posted
+
             /**
              * Note: I'm not sure whether the context should be filtered,
              * but I believe this is not a bad idea
@@ -277,6 +278,7 @@ class SokoForm implements SokoFormInterface
                         }
                         $error = "";
 
+
                         $valueIsValid = call_user_func_array($validationFn, [
                             $value,
                             &$preferences,
@@ -285,6 +287,8 @@ class SokoForm implements SokoFormInterface
                             $control,
                             $context,
                         ]);
+
+
 
                         // in case of failure, we translate the error message(s) and
                         // attach them to the control so that they are available to the view
