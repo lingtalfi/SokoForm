@@ -1387,6 +1387,10 @@ Related
 History Log
 ------------------
     
+- 1.30.4 -- 2018-01-01
+
+    - fix notifications, now callback executes first
+    
 - 1.30.3 -- 2017-12-12
 
     - fix SokoSiretValidationRule illegally returning false

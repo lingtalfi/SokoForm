@@ -111,12 +111,13 @@ class SokoFormRenderer
         $formModel = $this->getModel();
         $notifs = $formModel['form']['notifications'];
         foreach ($notifs as $notif) {
-            if (true === is_object($this->notificationsRenderer)) {
+            if (is_callable($this->notificationsRenderer)) {
+                call_user_func($this->notificationsRenderer, $notif);
+            }
+            elseif (true === is_object($this->notificationsRenderer)) {
                 if (method_exists($this->notificationsRenderer, "render")) {
                     $this->notificationsRenderer->render($notif);
                 }
-            } elseif (is_callable($this->notificationsRenderer)) {
-                call_user_func($this->notificationsRenderer, $notif);
             }
         }
     }
