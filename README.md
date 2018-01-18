@@ -1387,6 +1387,10 @@ Related
 History Log
 ------------------
     
+- 1.31.0 -- 2018-01-18
+
+    - improve SokoControl, now accept properties property
+    
 - 1.30.4 -- 2018-01-01
 
     - fix notifications, now callback executes first
