@@ -24,6 +24,12 @@ class SokoBooleanChoiceControl extends SokoControl
 
     public function setValue($value)
     {
+        if (
+            is_string($value) &&
+            'on' === strtolower($value)
+        ) {
+            $value = 1;
+        }
         $value = (int)$value;
         return parent::setValue($value);
     }

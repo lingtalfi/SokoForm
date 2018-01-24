@@ -289,7 +289,6 @@ class SokoForm implements SokoFormInterface
                         ]);
 
 
-
                         // in case of failure, we translate the error message(s) and
                         // attach them to the control so that they are available to the view
                         if (false === $valueIsValid) {
@@ -321,6 +320,15 @@ class SokoForm implements SokoFormInterface
                     $filteredContext[$name] = null;
                     $control->setValue(null);
                 }
+
+
+                //--------------------------------------------
+                // THEN WE ASK THE CONTROL THE VALUE AGAIN
+                // that's because the control could prepare it if it wanted to.
+                // for instance for checkboxes, the control might want to
+                // convert the value to a boolean, or an int, ...
+                //--------------------------------------------
+                $filteredContext[$name] = $control->getValue();
             }
 
 
