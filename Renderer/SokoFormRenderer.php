@@ -81,7 +81,6 @@ class SokoFormRenderer
 
         if (array_key_exists($controlName, $controls)) {
             $controlModel = $controls[$controlName];
-
             $renderIdentifier = $this->getRenderIdentifier($controlModel);
             $camelMethod = CaseTool::toCamel("render " . $renderIdentifier);
             if (method_exists($this, $camelMethod)) {
@@ -219,6 +218,7 @@ class SokoFormRenderer
                 $ret = "input-$type";
                 break;
             case "SokoChoiceControl":
+            case "SokoBooleanChoiceControl":
                 $type = $controlModel['type'];
                 $ret = "choice-$type";
                 break;

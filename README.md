@@ -1387,6 +1387,10 @@ Related
 History Log
 ------------------
     
+- 1.32.0 -- 2018-01-24
+
+    - add SokoBooleanChoiceControl
+    
 - 1.31.0 -- 2018-01-18
 
     - improve SokoControl, now accept properties property
