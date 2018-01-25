@@ -1387,6 +1387,10 @@ Related
 History Log
 ------------------
     
+- 1.34.0 -- 2018-01-25
+
+    - SokoFormRenderer.render now distinguishes SokoBooleanChoiceControl from other types of control
+    
 - 1.33.0 -- 2018-01-24
 
     - enhance SokoForm.process, now ask the value back from the control objects (rather than just from the pool)

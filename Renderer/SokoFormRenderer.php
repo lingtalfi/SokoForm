@@ -218,9 +218,12 @@ class SokoFormRenderer
                 $ret = "input-$type";
                 break;
             case "SokoChoiceControl":
-            case "SokoBooleanChoiceControl":
                 $type = $controlModel['type'];
                 $ret = "choice-$type";
+                break;
+            case "SokoBooleanChoiceControl":
+                $type = $controlModel['type'];
+                $ret = "choice-boolean-$type";
                 break;
             case "SokoFileControl":
                 $type = $controlModel['type'];
