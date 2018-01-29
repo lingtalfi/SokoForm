@@ -221,6 +221,10 @@ class SokoFormRenderer
                 $type = $controlModel['type'];
                 $ret = "choice-$type";
                 break;
+            case "SokoAutocompleteInputControl":
+                $type = $controlModel['type'];
+                $ret = "autocomplete-input-$type";
+                break;
             case "SokoBooleanChoiceControl":
                 $type = $controlModel['type'];
                 $ret = "choice-boolean-$type";

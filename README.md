@@ -1387,6 +1387,10 @@ Related
 History Log
 ------------------
     
+- 1.35.0 -- 2018-01-29
+
+    - add SokoAutocompleteInputControl object
+    
 - 1.34.0 -- 2018-01-25
 
     - SokoFormRenderer.render now distinguishes SokoBooleanChoiceControl from other types of control
