@@ -1387,6 +1387,10 @@ Related
 History Log
 ------------------
     
+- 1.35.1 -- 2018-01-29
+
+    - update SokoAutocompleteInputControl object, now is more agnostic
+    
 - 1.35.0 -- 2018-01-29
 
     - add SokoAutocompleteInputControl object
