@@ -6,6 +6,7 @@ namespace SokoForm\Renderer;
 
 use Bat\CaseTool;
 use Bat\StringTool;
+use SokoForm\Exception\SokoException;
 use SokoForm\Exception\SokoFormException;
 use SokoForm\Form\SokoFormInterface;
 
@@ -112,8 +113,7 @@ class SokoFormRenderer
         foreach ($notifs as $notif) {
             if (is_callable($this->notificationsRenderer)) {
                 call_user_func($this->notificationsRenderer, $notif);
-            }
-            elseif (true === is_object($this->notificationsRenderer)) {
+            } elseif (true === is_object($this->notificationsRenderer)) {
                 if (method_exists($this->notificationsRenderer, "render")) {
                     $this->notificationsRenderer->render($notif);
                 }
@@ -201,6 +201,7 @@ class SokoFormRenderer
      *              If null, means no render type was found.
      *                  It allows us to chain this method with a custom one,
      *                  if we were using custom controls.
+     * @throws SokoException
      */
     protected function getRenderIdentifier(array $controlModel)
     {
@@ -234,6 +235,7 @@ class SokoFormRenderer
                 $ret = "file-$type";
                 break;
             default:
+                throw new SokoException("Unknown renderIdentifier with className: $className");
                 break;
         }
 

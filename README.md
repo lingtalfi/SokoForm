@@ -1387,6 +1387,10 @@ Related
 History Log
 ------------------
     
+- 1.36.0 -- 2018-02-06
+
+    - SokoFormRenderer internal getRenderIdentifier method now throws exceptions when the class is unknown
+    
 - 1.35.1 -- 2018-01-29
 
     - update SokoAutocompleteInputControl object, now is more agnostic
