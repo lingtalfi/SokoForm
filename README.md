@@ -1387,6 +1387,10 @@ Related
 History Log
 ------------------
     
+- 1.37.0 -- 2018-02-08
+
+    - soko-form-error-removal-tool.js now handles textarea
+    
 - 1.36.0 -- 2018-02-06
 
     - SokoFormRenderer internal getRenderIdentifier method now throws exceptions when the class is unknown
