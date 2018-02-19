@@ -1387,6 +1387,10 @@ Related
 History Log
 ------------------
     
+- 1.38.0 -- 2018-02-19
+
+    - add SokoControl.addProperties method
+    
 - 1.37.0 -- 2018-02-08
 
     - soko-form-error-removal-tool.js now handles textarea

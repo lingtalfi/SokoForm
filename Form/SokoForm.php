@@ -239,6 +239,8 @@ class SokoForm implements SokoFormInterface
             }
         }
 
+
+
         //--------------------------------------------
         // CHECKING WHETHER OR NOT THE FORM IS SUBMITTED
         //--------------------------------------------
