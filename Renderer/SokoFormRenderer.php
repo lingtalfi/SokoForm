@@ -234,6 +234,10 @@ class SokoFormRenderer
                 $type = $controlModel['type'];
                 $ret = "file-$type";
                 break;
+            case "SokoSafeUploadControl":
+                $type = $controlModel['type'];
+                $ret = "file-$type";
+                break;
             default:
                 throw new SokoException("Unknown renderIdentifier with className: $className");
                 break;

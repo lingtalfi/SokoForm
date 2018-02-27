@@ -1387,6 +1387,10 @@ Related
 History Log
 ------------------
     
+- 1.39.0 -- 2018-02-27
+
+    - add SokoSafeUploadControl object
+    
 - 1.38.0 -- 2018-02-19
 
     - add SokoControl.addProperties method
