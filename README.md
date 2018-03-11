@@ -1387,6 +1387,10 @@ Related
 History Log
 ------------------
     
+- 1.40.0 -- 2018-03-11
+
+    - add SokoComboBoxControl object
+    
 - 1.39.0 -- 2018-02-27
 
     - add SokoSafeUploadControl object
