@@ -21,6 +21,7 @@ class SokoComboBoxControl extends SokoControl
 {
 
     protected $choices;
+    protected $addEmptyChoice;
 
     public function __construct()
     {
@@ -41,14 +42,32 @@ class SokoComboBoxControl extends SokoControl
     }
 
 
+    public function addEmptyChoiceAtBeginning($bool = true)
+    {
+        $this->addEmptyChoice = $bool;
+        return $this;
+    }
+
+
     //--------------------------------------------
     //
     //--------------------------------------------
     protected function getSpecificModel() // override me
     {
+        $choices = $this->choices;
+        if (true === $this->addEmptyChoice) {
+            $tmp = [
+                "" => "Select an element", // this should be overridden anyway (i.e. not visible)
+            ];
+            foreach ($choices as $k => $v) {
+                $tmp[$k] = $v;
+            }
+            $choices = $tmp;
+        }
+
         $ret = [
             "type" => 'list',
-            "choices" => $this->choices,
+            "choices" => $choices,
         ];
         return $ret;
     }

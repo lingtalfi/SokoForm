@@ -1387,6 +1387,10 @@ Related
 History Log
 ------------------
     
+- 1.41.0 -- 2018-03-11
+
+    - add SokoComboBoxControl.addEmptyChoiceAtBeginning method
+    
 - 1.40.0 -- 2018-03-11
 
     - add SokoComboBoxControl object
