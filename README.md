@@ -1387,6 +1387,11 @@ Related
 History Log
 ------------------
     
+- 1.42.0 -- 2018-03-12
+
+    - add SokoFreeHtmlControl object
+    - add SokoControl.setProperty method
+    
 - 1.41.0 -- 2018-03-11
 
     - add SokoComboBoxControl.addEmptyChoiceAtBeginning method
