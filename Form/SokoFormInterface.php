@@ -39,6 +39,13 @@ interface SokoFormInterface
 
     public function getAttributes();
 
+    /**
+     * @return array of item, each item having the following structure:
+     *      - label: the name/label of the group
+     *      - controls: array control names owned by this group
+     */
+    public function getGroups();
+
 
 
     //--------------------------------------------

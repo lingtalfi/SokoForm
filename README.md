@@ -1387,6 +1387,10 @@ Related
 History Log
 ------------------
     
+- 1.43.0 -- 2018-03-12
+
+    - add SokoFormInterface.getGroups method
+    
 - 1.42.1 -- 2018-03-12
 
     - fix SokoFreeHtmlControl internal html property conflict with user defined properties

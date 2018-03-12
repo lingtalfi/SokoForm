@@ -70,6 +70,7 @@ class SokoForm implements SokoFormInterface
      */
     private $prepared;
     private $model;
+    private $groups;
 
     public function __construct()
     {
@@ -84,6 +85,7 @@ class SokoForm implements SokoFormInterface
         $this->validationRules = [];
         $this->prepared = false;
         $this->model = null;
+        $this->groups = [];
         $this->init();
     }
 
@@ -142,6 +144,17 @@ class SokoForm implements SokoFormInterface
             $attr['enctype'] = $this->enctype;
         }
         return $attr;
+    }
+
+    public function setGroups(array $groups)
+    {
+        $this->groups = $groups;
+        return $this;
+    }
+
+    public function getGroups()
+    {
+        return $this->groups;
     }
 
     public function getFormAttributesAsString()
@@ -238,7 +251,6 @@ class SokoForm implements SokoFormInterface
                 $context = $_GET;
             }
         }
-
 
 
         //--------------------------------------------
