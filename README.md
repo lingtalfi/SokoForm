@@ -1387,6 +1387,10 @@ Related
 History Log
 ------------------
     
+- 1.44.0 -- 2018-03-16
+
+    - add SokoSafeUploadControl.setPayloadVar method
+    
 - 1.43.0 -- 2018-03-12
 
     - add SokoFormInterface.getGroups method
