@@ -1387,6 +1387,10 @@ Related
 History Log
 ------------------
     
+- 1.45.0 -- 2018-03-23
+
+    - add SokoDateControl
+    
 - 1.44.0 -- 2018-03-16
 
     - add SokoSafeUploadControl.setPayloadVar method

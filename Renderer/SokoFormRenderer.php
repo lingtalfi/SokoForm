@@ -244,6 +244,10 @@ class SokoFormRenderer
             case "SokoFreeHtmlControl":
                 $ret = "free";
                 break;
+            case "SokoDateControl":
+                $type = $controlModel['type'];
+                $ret = "input-$type";
+                break;
             default:
                 throw new SokoException("Unknown renderIdentifier with className: $className");
                 break;
