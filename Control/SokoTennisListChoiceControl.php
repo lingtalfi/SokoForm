@@ -17,12 +17,14 @@ class SokoTennisListChoiceControl extends SokoChoiceControl
 {
 
     protected $selectedKeys;
+    protected $allSelectedReturnsNull;
 
 
     public function __construct()
     {
         parent::__construct();
         $this->selectedKeys = [];
+        $this->allSelectedReturnsNull = true;
     }
 
 
@@ -30,6 +32,26 @@ class SokoTennisListChoiceControl extends SokoChoiceControl
     {
         $this->selectedKeys = $value;
         return $this;
+    }
+
+    public function setAllSelectedReturnsNull(bool $allSelectedReturnsNull)
+    {
+        $this->allSelectedReturnsNull = $allSelectedReturnsNull;
+        return $this;
+    }
+
+
+    public function getValue()
+    {
+        if (true === $this->allSelectedReturnsNull) {
+
+            $initialCount = count($this->choices);
+            $count = count($this->selectedKeys);
+            if ($count === $initialCount) {
+                return null;
+            }
+        }
+        return $this->selectedKeys;
     }
 
     //--------------------------------------------

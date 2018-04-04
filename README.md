@@ -1387,6 +1387,10 @@ Related
 History Log
 ------------------
     
+- 1.47.0 -- 2018-04-04
+
+    - add SokoTennisListChoiceControl.allSelectedReturnsNull property, true by default
+
 - 1.46.0 -- 2018-04-04
 
     - add SokoTennisListChoiceControl
