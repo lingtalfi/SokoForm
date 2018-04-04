@@ -248,6 +248,10 @@ class SokoFormRenderer
                 $type = $controlModel['type'];
                 $ret = "input-$type";
                 break;
+            case "SokoTennisListChoiceControl":
+                $type = $controlModel['type'];
+                $ret = "choice-tennis-$type";
+                break;
             default:
                 throw new SokoException("Unknown renderIdentifier with className: $className");
                 break;

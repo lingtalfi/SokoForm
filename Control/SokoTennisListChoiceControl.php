@@ -16,22 +16,21 @@ namespace SokoForm\Control;
 class SokoTennisListChoiceControl extends SokoChoiceControl
 {
 
-    protected $negativeChoices;
+    protected $selectedKeys;
 
 
     public function __construct()
     {
         parent::__construct();
-        $this->negativeChoices = [];
+        $this->selectedKeys = [];
     }
 
-    public function setNegativeChoices(array $negativeChoices)
+
+    public function setValue($value)
     {
-        $this->negativeChoices = $negativeChoices;
+        $this->selectedKeys = $value;
         return $this;
     }
-
-
 
     //--------------------------------------------
     //
@@ -41,7 +40,7 @@ class SokoTennisListChoiceControl extends SokoChoiceControl
         $ret = [
             "type" => "list",
             "choices" => $this->choices,
-            "negativeChoices" => $this->negativeChoices,
+//            "selectedKeys" => $this->selectedKeys,
         ];
         return $ret;
     }
