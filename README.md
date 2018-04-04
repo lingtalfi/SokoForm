@@ -1387,6 +1387,10 @@ Related
 History Log
 ------------------
     
+- 1.46.0 -- 2018-04-04
+
+    - add SokoTennisListChoiceControl
+    
 - 1.45.0 -- 2018-03-23
 
     - add SokoDateControl
