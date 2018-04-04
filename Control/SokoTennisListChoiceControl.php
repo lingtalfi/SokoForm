@@ -62,7 +62,7 @@ class SokoTennisListChoiceControl extends SokoChoiceControl
         $ret = [
             "type" => "list",
             "choices" => $this->choices,
-//            "selectedKeys" => $this->selectedKeys,
+            "selectedKeys" => $this->selectedKeys,
         ];
         return $ret;
     }
