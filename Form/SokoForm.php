@@ -391,6 +391,7 @@ class SokoForm implements SokoFormInterface
                  */
                 $controls[$name] = $control->getModel();
                 $controls[$name]['class'] = ClassTool::getShortName($control);
+//                $controls[$name]['control'] = $control;
             }
 
 

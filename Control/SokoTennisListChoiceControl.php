@@ -59,10 +59,18 @@ class SokoTennisListChoiceControl extends SokoChoiceControl
     //--------------------------------------------
     protected function getSpecificModel() // override me
     {
+        $selected = $this->selectedKeys;
+        if (null === $selected) {
+            $selected = array_keys($this->choices);
+        }
+        if ($selected) {
+            $selected = array_map('strval', $selected);
+        }
+
         $ret = [
             "type" => "list",
             "choices" => $this->choices,
-            "selectedKeys" => $this->selectedKeys,
+            "selectedKeys" => $selected,
         ];
         return $ret;
     }
