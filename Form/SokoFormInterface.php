@@ -46,6 +46,8 @@ interface SokoFormInterface
      */
     public function getGroups();
 
+    public function setGroups(array $groups);
+
 
 
     //--------------------------------------------
