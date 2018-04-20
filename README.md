@@ -1387,6 +1387,10 @@ Related
 History Log
 ------------------
     
+- 1.50.0 -- 2018-04-20
+
+    - reforged SokoFormErrorRemovalTool js getInst method, add auto-registration based on form css id
+    
 - 1.49.0 -- 2018-04-20
 
     - enhance SokoFormErrorRemovalTool js, now handles inputs of type password
