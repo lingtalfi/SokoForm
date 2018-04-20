@@ -1387,6 +1387,10 @@ Related
 History Log
 ------------------
     
+- 1.49.0 -- 2018-04-20
+
+    - enhance SokoFormErrorRemovalTool js, now handles inputs of type password
+    
 - 1.48.0 -- 2018-04-13
 
     - add setGroups to SokoFormInterface

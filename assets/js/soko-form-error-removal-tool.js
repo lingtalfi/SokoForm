@@ -57,7 +57,7 @@ if ('undefined' === typeof SokoFormErrorRemovalTool) {
                     var jControl = jContext.find('[name="' + name + '"]');
                     if (jControl.is("input") || jControl.is("textarea")) {
                         var type = jControl.attr('type');
-                        if ("text" === type) {
+                        if ("text" === type || "password" === type) {
                             (function (theName, _jControl) {
                                 _jControl
                                     .off("keydown.dynamicErrorRemoval")
