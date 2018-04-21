@@ -1387,6 +1387,10 @@ Related
 History Log
 ------------------
     
+- 1.51.0 -- 2018-04-21
+
+    - enhance SokoInArrayValidationRule, now is more permissive with strings vs int checking
+
 - 1.50.0 -- 2018-04-20
 
     - reforged SokoFormErrorRemovalTool js getInst method, add auto-registration based on form css id

@@ -42,7 +42,13 @@ class SokoInArrayValidationRule extends SokoValidationRule
                         $values = $array;
                     }
 
-                    if (!in_array($value, $values, true)) {
+
+                    // posted values from form always are strings
+                    $stringValues = array_map("strval", $values);
+
+
+
+                    if (!in_array((string)$value, $stringValues, true)) {
                         $preferences['sArray'] = implode(', ', $labels);
                         $error = $this->getErrorMessage();
                         return false;
