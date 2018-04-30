@@ -41,19 +41,4 @@ class SokoUtil
         $preferences["attributes"] = $attr;
     }
 
-
-    /**
-     * @param array $groups , as returned by the SokoFormInterface.getGroups method
-     * @param string $sectionName
-     * @param array $controls
-     */
-    public static function changeGroupModel(array &$groups, string $sectionName, array $controls)
-    {
-        foreach ($groups as $k => $section) {
-            $name = $section['name'] ?? null;
-            if ($sectionName === $name) {
-                $groups[$k]['controls'] = $controls;
-            }
-        }
-    }
 }

@@ -41,6 +41,8 @@ interface SokoFormInterface
 
     /**
      * @return array of item, each item having the following structure:
+     *      - ?name: string to identify this group; you will only need it if you
+     *              do operations with the groups (like an insert after operation for instance...)
      *      - label: the name/label of the group
      *      - controls: array control names owned by this group
      */

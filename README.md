@@ -1387,6 +1387,11 @@ Related
 History Log
 ------------------
     
+- 1.53.0 -- 2018-04-30
+
+    - add SokoTool::addSection method
+    - moved SokoUtil::changeGroupModel method to SokoTool
+
 - 1.52.0 -- 2018-04-30
 
     - add SokoUtil::changeGroupModel method
