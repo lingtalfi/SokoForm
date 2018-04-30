@@ -1387,6 +1387,10 @@ Related
 History Log
 ------------------
     
+- 1.54.0 -- 2018-04-30
+
+    - add SokoTool::removeGroup method
+
 - 1.53.0 -- 2018-04-30
 
     - add SokoTool::addSection method

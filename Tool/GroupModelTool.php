@@ -39,6 +39,11 @@ class GroupModelTool
     }
 
 
+    public static function removeGroup(array &$groups, string $groupName)
+    {
+        $index = self::getIndexByGroupName($groups, $groupName);
+        unset($groups[$index]);
+    }
 
     //--------------------------------------------
     //
