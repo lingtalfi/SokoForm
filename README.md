@@ -1387,6 +1387,10 @@ Related
 History Log
 ------------------
     
+- 1.52.0 -- 2018-04-30
+
+    - add SokoUtil::changeGroupModel method
+
 - 1.51.0 -- 2018-04-21
 
     - enhance SokoInArrayValidationRule, now is more permissive with strings vs int checking
