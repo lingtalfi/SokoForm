@@ -12,11 +12,34 @@ class GroupModelTool
 
 
     /**
+     * @param array $groups
+     * @param string $groupName
+     * @return bool|array, the controls for the given group
+     */
+    public static function getGroupControls(array $groups, string $groupName)
+    {
+        $index = self::getIndexByGroupName($groups, $groupName);
+        return $groups[$index]['controls'];
+    }
+
+    public static function hasGroup(array $groups, string $groupName)
+    {
+        foreach ($groups as $k => $group) {
+            $name = $group['name'] ?? null;
+            if ($groupName === $name) {
+                return true;
+            }
+        }
+        return false;
+    }
+
+
+    /**
      * @param array $groups , as returned by the SokoFormInterface.getGroups method
      * @param string $sectionName
      * @param array $controls
      */
-    public static function changeGroupModel(array &$groups, string $sectionName, array $controls)
+    public static function changeGroupControls(array &$groups, string $sectionName, array $controls)
     {
         foreach ($groups as $k => $section) {
             $name = $section['name'] ?? null;
@@ -32,7 +55,7 @@ class GroupModelTool
      * @param string $groupName , the group name after which the new section will be inserted
      * @param array $sectionModel
      */
-    public static function addSection(array &$groups, string $groupName, array $sectionModel)
+    public static function addGroupAfter(array &$groups, string $groupName, array $sectionModel)
     {
         $index = self::getIndexByGroupName($groups, $groupName);
         ArrayTool::insertRowAfter($index, $sectionModel, $groups);

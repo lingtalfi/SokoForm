@@ -1387,6 +1387,10 @@ Related
 History Log
 ------------------
     
+- 1.55.0 -- 2018-05-01
+
+    - add SokoTool::getGroupControls method
+    
 - 1.54.0 -- 2018-04-30
 
     - add SokoTool::removeGroup method
@@ -1394,11 +1398,11 @@ History Log
 - 1.53.0 -- 2018-04-30
 
     - add SokoTool::addSection method
-    - moved SokoUtil::changeGroupModel method to SokoTool
+    - moved SokoUtil::changeGroupControls method to SokoTool
 
 - 1.52.0 -- 2018-04-30
 
-    - add SokoUtil::changeGroupModel method
+    - add SokoUtil::changeGroupControls method
 
 - 1.51.0 -- 2018-04-21
 
