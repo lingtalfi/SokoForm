@@ -198,7 +198,7 @@ class SokoTvaIntracomValidationRule extends SokoValidationRule
         $crawler = new Crawler($html);
 
         $table = $crawler->filter("#vatResponseFormTable");
-        if ('Yes' === substr($table->text(), 0, 3)) {
+        if ('Yes' === substr(trim($table->text()), 0, 3)) {
             return true;
         }
         return false;
