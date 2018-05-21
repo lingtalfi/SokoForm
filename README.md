@@ -1387,6 +1387,10 @@ Related
 History Log
 ------------------
     
+- 1.56.2 -- 2018-05-21
+
+    - fix SokoForm internal translation mechanism not resolving tags
+    
 - 1.56.1 -- 2018-05-21
 
     - fix SokoValidationRuleTranslator getLang -> setLang typo

@@ -514,18 +514,17 @@ class SokoForm implements SokoFormInterface
                  */
                 $translation = $error;
             }
-
-
-            $keys = array_keys($tags);
-            $values = array_values($tags);
-            $keys = array_map(function ($v) {
-                return "{" . $v . "}";
-            }, $keys);
-            return str_replace($keys, $values, $translation);
-
-
+        } else {
+            $translation = $error;
         }
-        return $error;
+        $keys = array_keys($tags);
+        $values = array_values($tags);
+        $keys = array_map(function ($v) {
+            return "{" . $v . "}";
+        }, $keys);
+        return str_replace($keys, $values, $translation);
+
+
     }
 
 }
