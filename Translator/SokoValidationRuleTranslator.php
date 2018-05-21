@@ -14,7 +14,7 @@ class SokoValidationRuleTranslator
     private static $lang = "eng";
 
 
-    public static function getLang(string $lang)
+    public static function setLang(string $lang)
     {
         self::$lang = $lang;
     }

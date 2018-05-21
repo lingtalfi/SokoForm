@@ -1387,6 +1387,10 @@ Related
 History Log
 ------------------
     
+- 1.56.1 -- 2018-05-21
+
+    - fix SokoValidationRuleTranslator getLang -> setLang typo
+    
 - 1.56.0 -- 2018-05-21
 
     - add SokoValidationRuleTranslator
