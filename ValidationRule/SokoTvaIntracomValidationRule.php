@@ -8,6 +8,7 @@ use Bat\HttpTool;
 use SokoForm\Control\SokoControlInterface;
 use SokoForm\Exception\SokoFormException;
 use SokoForm\Form\SokoFormInterface;
+use SokoForm\Translator\SokoValidationRuleTranslator;
 use Symfony\Component\DomCrawler\Crawler;
 
 /**
@@ -64,7 +65,7 @@ class SokoTvaIntracomValidationRule extends SokoValidationRule
         $this->useWebservice = true;
 
 
-        $this->setErrorMessage("The TVA intracom number isn't valid for the selected country ({countryLabel})");
+        $this->setErrorMessage(SokoValidationRuleTranslator::getValidationMessageTranslation("tvaIntracom"));
 
         $this->setValidationFunction(function ($value, array &$preferences, &$error = null, SokoFormInterface $form, SokoControlInterface $control) {
 

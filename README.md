@@ -1387,6 +1387,10 @@ Related
 History Log
 ------------------
     
+- 1.56.0 -- 2018-05-21
+
+    - add SokoValidationRuleTranslator
+    
 - 1.55.1 -- 2018-05-09
 
     - fix SokoTvaIntracomValidationRule.checkTvaIntracomUsingVies private method, use more permissive code (against webservice evolution))

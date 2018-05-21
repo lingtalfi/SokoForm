@@ -327,7 +327,7 @@ class SokoTableFormRenderer extends SokoFormRenderer
         ?>
 
         <?php foreach ($model['choices'] as $info): ?>
-        <?php $this->doRenderChoiceListWithNamesItemWidget($info, $values); ?>
+        <?php $this->doRenderChoiceListWithNamesItemWidget($info, $values, $preferences); ?>
         <?php if (false === $inline): ?><br><?php endif; ?>
 
 
@@ -335,7 +335,7 @@ class SokoTableFormRenderer extends SokoFormRenderer
         <?php
     }
 
-    protected function doRenderChoiceListWithNamesItemWidget(array $itemModel, array $values)
+    protected function doRenderChoiceListWithNamesItemWidget(array $itemModel, array $values, array $preferences = [])
     {
         list($name, $val, $label, $controlName) = $itemModel;
         $id = $this->formModel['form']['name'] . "-" . CaseTool::toDog($name) . "-" . CaseTool::toDog($val);
