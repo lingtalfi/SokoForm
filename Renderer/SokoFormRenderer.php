@@ -6,6 +6,7 @@ namespace SokoForm\Renderer;
 
 use Bat\CaseTool;
 use Bat\StringTool;
+use Module\Ekom\Utils\E;
 use SokoForm\Exception\SokoException;
 use SokoForm\Exception\SokoFormException;
 use SokoForm\Form\SokoFormInterface;
@@ -78,7 +79,6 @@ class SokoFormRenderer
             $preferences = [];
         }
         $preferences = array_replace($this->generalPreferences, $preferences);
-
 
         if (array_key_exists($controlName, $controls)) {
             $controlModel = $controls[$controlName];

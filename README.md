@@ -1387,6 +1387,10 @@ Related
 History Log
 ------------------
     
+- 1.57.0 -- 2018-05-25
+
+    - add SummerSokoFormRenderer 
+    
 - 1.56.2 -- 2018-05-21
 
     - fix SokoForm internal translation mechanism not resolving tags

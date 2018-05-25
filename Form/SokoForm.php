@@ -251,11 +251,11 @@ class SokoForm implements SokoFormInterface
                 $context = $_GET;
             }
         }
-
         //--------------------------------------------
         // CHECKING WHETHER OR NOT THE FORM IS SUBMITTED
         //--------------------------------------------
         if (array_key_exists($this->name, $context)) { // now the form is posted
+
 
             /**
              * Note: I'm not sure whether the context should be filtered,
