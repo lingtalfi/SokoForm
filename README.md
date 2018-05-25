@@ -1387,6 +1387,10 @@ Related
 History Log
 ------------------
     
+- 1.58.0 -- 2018-05-25
+
+    - add SummerSokoFormRenderer.renderSelect method 
+    
 - 1.57.0 -- 2018-05-25
 
     - add SummerSokoFormRenderer 

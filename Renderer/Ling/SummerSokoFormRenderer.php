@@ -82,6 +82,27 @@ class SummerSokoFormRenderer
     }
 
 
+    public function renderSelect(string $name)
+    {
+        $controls = $this->formModel['controls'];
+        $controlChoices = $controls[$name]['choices'];
+        $controlValue = $controls[$name]['value'];
+        $controlErrors = $controls[$name]['errors'];
+        ?>
+        <select name="<?php echo htmlspecialchars($name); ?>">
+            <?php foreach ($controlChoices as $k => $v):
+                $sSel = ((string)$controlValue === (string)$k) ? "selected='selected'" : "";
+                ?>
+                <option <?php echo $sSel; ?>
+                        value="<?php echo $k; ?>"><?php echo $v; ?></option>
+            <?php endforeach; ?>
+        </select>
+        <?php if ($controlErrors): ?>
+        <?php $this->printErrors($controlErrors); ?>
+    <?php endif; ?>
+        <?php
+    }
+
 
     //--------------------------------------------
     //
