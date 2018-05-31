@@ -1387,6 +1387,11 @@ Related
 History Log
 ------------------
     
+- 1.59.0 -- 2018-05-31
+
+    - add UikitSokoFormRenderer class 
+    - add FrenchSokoForm class 
+    
 - 1.58.0 -- 2018-05-25
 
     - add SummerSokoFormRenderer.renderSelect method 

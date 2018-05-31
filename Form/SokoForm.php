@@ -78,7 +78,7 @@ class SokoForm implements SokoFormInterface
         $this->method = "post";
         $this->action = "";
         $this->id = null;
-        $this->class = null;
+        $this->class = [];
         $this->enctype = null;
         $this->controls = [];
         $this->notifications = [];
@@ -117,8 +117,13 @@ class SokoForm implements SokoFormInterface
 
     public function getClass()
     {
-        return $this->class;
+        $class = $this->class;
+        if (is_array($class)) {
+            $class = implode(" ", $class);
+        }
+        return $class;
     }
+
 
     public function getEnctype()
     {
@@ -136,8 +141,12 @@ class SokoForm implements SokoFormInterface
             $attr['id'] = $this->id;
         }
 
-        if (null !== $this->class) {
-            $attr['class'] = $this->class;
+        if (null !== $this->class && $this->class) {
+            $class = $this->class;
+            if (!is_array($class)) { // backward compatibility
+                $class = [$class];
+            }
+            $attr['class'] = implode(" ", $class);
         }
 
         if (null !== $this->enctype) {
@@ -446,6 +455,27 @@ class SokoForm implements SokoFormInterface
         return $this;
     }
 
+    public function setId(string $id)
+    {
+        $this->id = $id;
+        return $this;
+    }
+
+    public function setClass($class)
+    {
+        if (!is_array($class)) {
+            $class = [$class];
+        }
+        $this->class = $class;
+        return $this;
+    }
+
+
+    public function addClass(string $class)
+    {
+        $this->class[] = $class;
+        return $this;
+    }
 
     public function setValidationRulesLang($validationRulesLang)
     {
