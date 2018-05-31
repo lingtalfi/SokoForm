@@ -84,7 +84,10 @@ interface SokoFormInterface
      *                      fn ( array $values, SokoFormInterface $form )
      *                      - values: array of controlName to value
      * @param array|null $context
-     * @return mixed
+     * @return mixed:
+     *          - true if the form has been posted successfully (all validation tests passed)
+     *          - false if the form has been posted, but at least one validation test failed
+     *          - null if the form has not been posted
      */
     public function process(callable $onSuccess, array $context = null);
 

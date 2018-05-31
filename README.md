@@ -1387,6 +1387,10 @@ Related
 History Log
 ------------------
     
+- 1.60.0 -- 2018-05-31
+
+    - enhance SokoForm.process method; it now returns a useful output 
+    
 - 1.59.0 -- 2018-05-31
 
     - add UikitSokoFormRenderer class 

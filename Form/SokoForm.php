@@ -236,7 +236,7 @@ class SokoForm implements SokoFormInterface
      *                      fn ( array $context, SokoFormInterface $form )
      *
      * @param array|null $context
-     * @return null
+     * @return mixed (bool|null)
      */
     public function process(callable $onSuccess, array $context = null)
     {
@@ -362,7 +362,10 @@ class SokoForm implements SokoFormInterface
                 call_user_func($onSuccess, $filteredContext, $this);
             }
 
+
+            return $formIsValid;
         }
+        return null;
     }
 
 
