@@ -88,7 +88,7 @@ class UikitSokoFormRenderer
 
             ?>
             <div class="uk-alert uk-alert-<?php echo $type; ?>">
-                <a class="uk-alert-close" uk-close></a>
+<!--                <a class="uk-alert-close" uk-close></a>-->
                 <?php if ($notification['title']): ?>
                     <h6 class="uk-text-lead"><?php echo $notification['title']; ?></h6>
                 <?php endif; ?>
@@ -294,7 +294,11 @@ class UikitSokoFormRenderer
         ?>
         <div
                 id="<?php echo $cssId; ?>"
-                class="js-upload uk-placeholder uk-text-center">
+                class="js-upload uk-placeholder uk-text-center
+<?php if (true === $hasError): ?>
+uk-form-danger
+<?php endif; ?>
+">
             <span uk-icon="icon: cloud-upload"></span>
             <span class="uk-text-middle"><?php echo $uploadFileTextPart1; ?></span>
             <div uk-form-custom>

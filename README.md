@@ -1387,6 +1387,10 @@ Related
 History Log
 ------------------
     
+- 1.60.1 -- 2018-05-31
+
+    - fix UikitSokoFormRenderer error handling for ajax file upload controls 
+    
 - 1.60.0 -- 2018-05-31
 
     - enhance SokoForm.process method; it now returns a useful output 
