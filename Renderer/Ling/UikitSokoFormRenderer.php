@@ -88,7 +88,7 @@ class UikitSokoFormRenderer
 
             ?>
             <div class="uk-alert uk-alert-<?php echo $type; ?>">
-<!--                <a class="uk-alert-close" uk-close></a>-->
+                <!--                <a class="uk-alert-close" uk-close></a>-->
                 <?php if ($notification['title']): ?>
                     <h6 class="uk-text-lead"><?php echo $notification['title']; ?></h6>
                 <?php endif; ?>
@@ -232,7 +232,9 @@ class UikitSokoFormRenderer
 " type="text"
                name="<?php echo htmlspecialchars($name); ?>"
                value="<?php echo htmlspecialchars($value); ?>"
-               placeholder="<?php echo htmlspecialchars($label); ?>">
+            <?php $this->extraAttributes('renderInputSokoInputControl', $control); ?>
+               placeholder="<?php echo htmlspecialchars($label); ?>"
+        >
 
         <?php if ($icon): ?>
         </div>
@@ -262,6 +264,7 @@ class UikitSokoFormRenderer
         ?>
         <div class="uk-form-custom">
             <input type="file"
+                <?php $this->extraAttributes('renderInputStaticFileSokoInputControl', $control); ?>
                    name="<?php echo htmlspecialchars($name); ?>"
                    value="<?php echo htmlspecialchars($value); ?>">
 
@@ -302,7 +305,11 @@ uk-form-danger
             <span uk-icon="icon: cloud-upload"></span>
             <span class="uk-text-middle"><?php echo $uploadFileTextPart1; ?></span>
             <div uk-form-custom>
-                <input type="file" multiple>
+                <input type="file"
+                    <?php
+                    // note: this will probably be moved to another hidden input representing the real postable value of this control
+                    $this->extraAttributes('renderInputAjaxFileSokoInputControl', $control); ?>
+                       multiple>
                 <span class="uk-link"><?php echo $uploadFileTextPart2; ?></span>
             </div>
         </div>
@@ -380,6 +387,7 @@ uk-form-danger
         ?>
         <input type="hidden"
                name="<?php echo htmlspecialchars($name); ?>"
+            <?php $this->extraAttributes('renderHiddenSokoInputControl', $control); ?>
                value="<?php echo htmlspecialchars($value); ?>">
         <?php
     }
@@ -483,5 +491,16 @@ uk-form-danger
 
     <?php endforeach; ?>
         <?php
+    }
+
+
+
+
+    //--------------------------------------------
+    //
+    //--------------------------------------------
+    protected function extraAttributes(string $methodName, array $control)
+    {
+
     }
 }
