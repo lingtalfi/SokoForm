@@ -369,6 +369,7 @@ uk-form-danger
     {
         $label = $control['label'];
         $value = $control['value'];
+        $controlName = $control['name'];
         $errors = $control['errors'];
         $hasError = (count($errors) > 0);
         ?>
@@ -376,7 +377,9 @@ uk-form-danger
             <?php if ($hasError): ?>
             uk-form-danger
             <?php endif; ?>
-" rows="5" placeholder="<?php echo htmlspecialchars($label); ?>"
+" rows="5"
+                  name="<?php echo htmlspecialchars($controlName); ?>"
+                  placeholder="<?php echo htmlspecialchars($label); ?>"
             <?php $this->extraAttributes('renderTextareaSokoInputControl', $control); ?>
         ><?php echo $value; ?></textarea>
         <?php
@@ -458,6 +461,9 @@ uk-form-danger
         if (null === $controlValues) {
             $controlValues = [];
         }
+        if (is_string($controlValues)) {
+            $controlValues = [$controlValues];
+        }
         $controlName = $control['name'];
         ?>
         <?php
@@ -488,9 +494,10 @@ uk-form-danger
     //--------------------------------------------
     //
     //--------------------------------------------
-    protected function renderNotifications(array $notifications)
+    protected function renderNotifications(array $notifications, array $options = [])
     {
 
+        $cssClass = $options['cssClass'] ?? null;
 
         foreach ($notifications as $notification):
 
@@ -502,7 +509,12 @@ uk-form-danger
             }
 
             ?>
-            <div class="uk-alert uk-alert-<?php echo $type; ?>">
+            <div class="uk-alert uk-alert-<?php echo $type; ?>
+<?php if ($cssClass): ?>
+<?php echo " " . $cssClass; ?>
+<?php endif; ?>
+
+">
                 <!--                <a class="uk-alert-close" uk-close></a>-->
                 <?php if ($notification['title']): ?>
                     <h6 class="uk-text-lead"><?php echo $notification['title']; ?></h6>
