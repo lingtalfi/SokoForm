@@ -5,35 +5,19 @@ namespace SokoForm\Renderer\Ling;
 
 
 use Bat\StringTool;
-use SokoForm\NotificationRenderer\SokoNotificationRenderer;
 
 class UikitSokoFormRenderer
 {
 
-    protected $formModel;
 
+    public function __construct()
+    {
+        //
+    }
 
     public static function create()
     {
         return new static();
-    }
-
-
-    public function notifications()
-    {
-        $renderer = SokoNotificationRenderer::create();
-        $notifs = $this->formModel['form']['notifications'];
-        foreach ($notifs as $notif) {
-            $renderer->render($notif);
-        }
-    }
-
-
-    public function submitKey()
-    {
-        $name = $this->formModel['form']['name'];
-        echo '<input type="hidden" name="' . $name . '" value="1">';
-
     }
 
 
@@ -52,6 +36,7 @@ class UikitSokoFormRenderer
         $style = $options['style'] ?? "stacked"; // stacked, horizontal
         $cssClass = $options['class'] ?? null;
         $submitButtonText = $options['submitButtonText'] ?? "Submit";
+        $noValidate = $options['noValidate'] ?? false;
 
 
         //--------------------------------------------
@@ -73,29 +58,12 @@ class UikitSokoFormRenderer
         $attributes['class'] = $curClass;
 
         // success, info, error, warning
+        if ($notifications) {
+            $this->renderNotifications($notifications);
+        }
         ?>
 
 
-        <?php if ($notifications): ?>
-        <?php foreach ($notifications as $notification):
-
-            $type = $notification['type'];
-            if ('info' === $type) {
-                $type = "primary";
-            } elseif ('error' === $type) {
-                $type = "danger";
-            }
-
-            ?>
-            <div class="uk-alert uk-alert-<?php echo $type; ?>">
-                <!--                <a class="uk-alert-close" uk-close></a>-->
-                <?php if ($notification['title']): ?>
-                    <h6 class="uk-text-lead"><?php echo $notification['title']; ?></h6>
-                <?php endif; ?>
-                <p><?php echo $notification['msg']; ?></p>
-            </div>
-        <?php endforeach; ?>
-    <?php endif; ?>
         <form
                 method="<?php echo $formProps['method']; ?>"
                 action="<?php echo $formProps['action']; ?>"
@@ -103,6 +71,11 @@ class UikitSokoFormRenderer
                 enctype="<?php echo $formProps['enctype']; ?>"
             <?php endif; ?>
             <?php echo StringTool::htmlAttributes($attributes) ?>
+
+            <?php if (true === $noValidate): ?>
+                novalidate
+            <?php endif; ?>
+
         >
 
 
@@ -201,7 +174,7 @@ class UikitSokoFormRenderer
 
         $icon = $properties['icon'] ?? null;
         $iconPosition = $properties['iconPosition'] ?? "left";
-        $iconIsClickable = $properties['iconIsClickable'] ?? false;
+        $iconIsClickable = $properties['iconIsClickable'] ?? true;
         $iconTag = (true === $iconIsClickable) ? 'a' : 'span';
 
         ?>
@@ -403,7 +376,9 @@ uk-form-danger
             <?php if ($hasError): ?>
             uk-form-danger
             <?php endif; ?>
-" rows="5" placeholder="<?php echo htmlspecialchars($label); ?>"><?php echo $value; ?></textarea>
+" rows="5" placeholder="<?php echo htmlspecialchars($label); ?>"
+            <?php $this->extraAttributes('renderTextareaSokoInputControl', $control); ?>
+        ><?php echo $value; ?></textarea>
         <?php
     }
 
@@ -429,14 +404,19 @@ uk-form-danger
         $errors = $control['errors'];
         $choices = $control['choices'];
         $controlValue = $control['value'];
+        $controlName = $control['name'];
         $hasError = (count($errors) > 0);
         ?>
 
-        <select class="uk-select
+        <select
+                class="uk-select
 <?php if ($hasError): ?>
 uk-form-danger
 <?php endif; ?>
-">
+"
+                name="<?php echo htmlspecialchars($controlName); ?>"
+            <?php $this->extraAttributes('renderSelectSokoChoiceControl', $control); ?>
+        >
             <?php foreach ($choices as $value => $label):
                 $sSel = ((string)$value === (string)$controlValue) ? 'selected="selected"' : "";
                 ?>
@@ -456,13 +436,18 @@ uk-form-danger
         $controlValue = $control['value'];
         $controlName = $control['name'];
         ?>
-        <?php foreach ($choices as $value => $label):
-        $sChecked = ((string)$value === (string)$controlValue) ? 'checked' : '';
-        ?>
-        <label><input class="uk-radio" type="radio" name="<?php echo htmlspecialchars($controlName); ?>"
-                      value="<?php echo htmlspecialchars($value); ?>"
-                <?php echo $sChecked; ?>> <?php echo $label; ?></label>
-    <?php endforeach; ?>
+        <?php
+        $cpt = 0;
+        foreach ($choices as $value => $label):
+            $sChecked = ((string)$value === (string)$controlValue) ? 'checked' : '';
+            ?>
+            <label><input class="uk-radio" type="radio" name="<?php echo htmlspecialchars($controlName); ?>"
+                          value="<?php echo htmlspecialchars($value); ?>"
+                    <?php $this->extraAttributes('renderRadioSokoChoiceControl', $control, $cpt); ?>
+                    <?php echo $sChecked; ?>> <?php echo $label; ?></label>
+            <?php
+            $cpt++;
+        endforeach; ?>
         <?php
     }
 
@@ -475,31 +460,65 @@ uk-form-danger
         }
         $controlName = $control['name'];
         ?>
-        <?php foreach ($choices as $value => $label):
-        if (in_array($value, $controlValues, true)) {
-            $sChecked = 'checked';
-        } else {
-            $sChecked = "";
-        }
-        ?>
-        <label><input class="uk-checkbox"
-                      type="checkbox"
-                      name="<?php echo htmlspecialchars($controlName); ?>"
-                      value="<?php echo htmlspecialchars($value); ?>"
-                <?php echo $sChecked; ?>> <?php echo $label; ?></label>
+        <?php
+        $cpt = 0;
+        foreach ($choices as $value => $label):
+            if (in_array($value, $controlValues, true)) {
+                $sChecked = 'checked';
+            } else {
+                $sChecked = "";
+            }
+            ?>
+            <label><input class="uk-checkbox"
+                          type="checkbox"
+                          name="<?php echo htmlspecialchars($controlName); ?>"
+                          value="<?php echo htmlspecialchars($value); ?>"
+                    <?php $this->extraAttributes('renderCheckboxSokoChoiceControl', $control, $cpt); ?>
+                    <?php echo $sChecked; ?>> <?php echo $label; ?></label>
 
 
-    <?php endforeach; ?>
+            <?php
+            $cpt++;
+        endforeach; ?>
         <?php
     }
-
 
 
 
     //--------------------------------------------
     //
     //--------------------------------------------
-    protected function extraAttributes(string $methodName, array $control)
+    protected function renderNotifications(array $notifications)
+    {
+
+
+        foreach ($notifications as $notification):
+
+            $type = $notification['type'];
+            if ('info' === $type) {
+                $type = "primary";
+            } elseif ('error' === $type) {
+                $type = "danger";
+            }
+
+            ?>
+            <div class="uk-alert uk-alert-<?php echo $type; ?>">
+                <!--                <a class="uk-alert-close" uk-close></a>-->
+                <?php if ($notification['title']): ?>
+                    <h6 class="uk-text-lead"><?php echo $notification['title']; ?></h6>
+                <?php endif; ?>
+                <p><?php echo $notification['msg']; ?></p>
+            </div>
+        <?php endforeach;
+
+    }
+
+
+
+    //--------------------------------------------
+    //
+    //--------------------------------------------
+    protected function extraAttributes(string $methodName, array $control, $extra = null)
     {
 
     }

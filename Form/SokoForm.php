@@ -421,6 +421,7 @@ class SokoForm implements SokoFormInterface
                     'notifications' => $this->notifications,
                 ],
                 'controls' => $controls,
+                'validationRules' => $this->validationRules,
             ];
         }
 

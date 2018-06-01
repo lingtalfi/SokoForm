@@ -1,6 +1,6 @@
 SokoForm
 ============
-2017-10-29
+2017-10-29 --> 2018-06-01
 
 
 SokoForm is a system that helps you creating your forms.
@@ -89,6 +89,15 @@ In soko, we use this model in version 1.3.0:
 
 
 - https://github.com/lingtalfi/Models/blob/master/Form/form-model.md
+
+
+Plus, Soko adds an extra property to this model::
+
+- validationRules: array of controlName => SokoValidationRuleInterface instance
+
+
+
+
 
 
 
