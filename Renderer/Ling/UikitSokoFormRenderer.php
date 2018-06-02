@@ -38,6 +38,7 @@ class UikitSokoFormRenderer
         $submitButtonText = $options['submitButtonText'] ?? "Submit";
         $noValidate = $options['noValidate'] ?? false;
         $topContent = $options['topContent'] ?? "";
+        $controlIds = $options['controlIds'] ?? [];
 
 
         //--------------------------------------------
@@ -90,13 +91,15 @@ class UikitSokoFormRenderer
 
                 <?php foreach ($controls as $control):
                     $controlClass = $control['class'];
+
+                    $cssId = $controlIds[$control['name']] ?? null;
                     $cssControlClass = "";
                     if ("SokoChoiceControl" === $controlClass) {
 
                         $properties = $control['properties'];
                         $style = $properties['style'] ?? 'select';
                         if ("radio" === $style) {
-                            $cssControlClass = "myuk-radio-container";
+                            $cssControlClass .= " myuk-radio-container";
                         }
 
                         $errors = $control['errors'];
@@ -108,7 +111,11 @@ class UikitSokoFormRenderer
 
 
                     ?>
-                    <div class="uk-margin">
+                    <div class="uk-margin"
+                        <?php if (null !== $cssId): ?>
+                            id="<?php echo $cssId; ?>"
+                        <?php endif; ?>
+                    >
                         <div class="uk-form-label"><?php echo $control['label']; ?></div>
                         <div class="uk-form-controls <?php echo $cssControlClass; ?>">
                             <?php
@@ -449,8 +456,9 @@ uk-form-danger
         foreach ($choices as $value => $label):
             $sChecked = ((string)$value === (string)$controlValue) ? 'checked' : '';
             ?>
-            <label class="uk-text-small"><input class="uk-radio" type="radio" name="<?php echo htmlspecialchars($controlName); ?>"
-                          value="<?php echo htmlspecialchars($value); ?>"
+            <label class="uk-text-small"><input class="uk-radio" type="radio"
+                                                name="<?php echo htmlspecialchars($controlName); ?>"
+                                                value="<?php echo htmlspecialchars($value); ?>"
                     <?php $this->extraAttributes('renderRadioSokoChoiceControl', $control, $cpt); ?>
                     <?php echo $sChecked; ?>> <?php echo $label; ?></label>
             <?php if (true === $br): ?>

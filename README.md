@@ -1396,6 +1396,10 @@ Related
 History Log
 ------------------
     
+- 1.64.0 -- 2018-06-02
+
+    - add UikitSokoFormRenderer.renderForm controlIds option
+
 - 1.63.0 -- 2018-06-02
 
     - enhance SokoForm.process method; now returns false when callback returns false
