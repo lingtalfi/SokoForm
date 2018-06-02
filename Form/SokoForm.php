@@ -400,6 +400,13 @@ class SokoForm implements SokoFormInterface
             // NOW PREPARING CONTROL PARTS
             //--------------------------------------------
             $controls = [];
+
+            /**
+             * We collect form errors using this technique, because it's very probable
+             * that an user calls the getControl()->addError() method inside the process method's callback,
+             * and so we have to parse controls individually to get all form errors...
+             */
+            $formErrors = [];
             foreach ($this->controls as $name => $control) {
                 /**
                  * @var $control SokoControlInterface
@@ -407,6 +414,11 @@ class SokoForm implements SokoFormInterface
                 $controls[$name] = $control->getModel();
                 $controls[$name]['class'] = ClassTool::getShortName($control);
 //                $controls[$name]['control'] = $control;
+
+                $controlErrors = $control->getErrors();
+                if ($controlErrors) {
+                    $formErrors[$name] = $control->getErrors();
+                }
             }
 
 
@@ -420,7 +432,7 @@ class SokoForm implements SokoFormInterface
                     'class' => $this->class,
                     'attributeString' => $this->getFormAttributesAsString(),
                     'attributes' => $this->getAttributes(),
-                    'errors' => [],
+                    'errors' => $formErrors,
                     'notifications' => $this->notifications,
                 ],
                 'controls' => $controls,
