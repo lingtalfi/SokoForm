@@ -1396,6 +1396,10 @@ Related
 History Log
 ------------------
     
+- 1.65.0 -- 2018-06-02
+
+    - add UikitSokoFormRenderer grid system
+
 - 1.64.1 -- 2018-06-02
 
     - fix SokoForm.getModel errors at form level not returned

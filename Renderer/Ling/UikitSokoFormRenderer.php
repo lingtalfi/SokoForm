@@ -36,9 +36,12 @@ class UikitSokoFormRenderer
         $style = $options['style'] ?? "stacked"; // stacked, horizontal
         $cssClass = $options['class'] ?? null;
         $submitButtonText = $options['submitButtonText'] ?? "Submit";
+        $submitButtonClass = $options['submitButtonClass'] ?? "";
         $noValidate = $options['noValidate'] ?? false;
+        $headings = $options['headings'] ?? [];
         $topContent = $options['topContent'] ?? "";
         $controlIds = $options['controlIds'] ?? [];
+        $grid = $options['grid'] ?? [];
 
 
         //--------------------------------------------
@@ -57,7 +60,14 @@ class UikitSokoFormRenderer
         if (null !== $size) {
             $curClass .= " uk-form-width-$size";
         }
+
+        if ($grid) {
+            $curClass .= " uk-grid-small";
+            $attributes['uk-grid'] = "";
+        }
+
         $attributes['class'] = $curClass;
+
 
         // success, info, error, warning
         if ($notifications) {
@@ -82,15 +92,30 @@ class UikitSokoFormRenderer
         >
 
 
+            <?php if (empty($grid)): ?>
+
             <fieldset class="uk-fieldset">
 
                 <?php if ($title): ?>
                     <legend class="uk-legend"><?php echo $title; ?></legend>
                 <?php endif; ?>
+                <?php endif; ?>
 
 
-                <?php foreach ($controls as $control):
+                <?php
+
+                /**
+                 * HIdden fields would mess up the grid,
+                 * so we extract them from the normal flow and display them at the end
+                 */
+                $hiddenControls = [];
+
+
+                foreach ($controls as $control):
+                    $controlName = $control['name'];
                     $controlClass = $control['class'];
+                    $controlType = $control['type'];
+                    $controlGrid = $grid[$controlName] ?? null;
 
                     $cssId = $controlIds[$control['name']] ?? null;
                     $cssControlClass = "";
@@ -110,7 +135,26 @@ class UikitSokoFormRenderer
                     }
 
 
+                    if ("SokoInputControl" === $controlClass && "hidden" === $controlType) {
+                        $hiddenControls[] = $control;
+                        continue;
+                    }
+
+
                     ?>
+
+
+                    <?php if (array_key_exists($controlName, $headings)): ?>
+                    <div class="uk-width-1-1">
+                        <h3 class="uk-heading-line"><span><?php echo $headings[$controlName]; ?></span></h3>
+                    </div>
+                <?php endif; ?>
+
+
+                    <?php if ($controlGrid): ?>
+                    <div class="uk-width-<?php echo $controlGrid; ?>">
+                <?php endif; ?>
+
                     <div class="uk-margin"
                         <?php if (null !== $cssId): ?>
                             id="<?php echo $cssId; ?>"
@@ -136,18 +180,34 @@ class UikitSokoFormRenderer
                             ?>
                         </div>
                     </div>
+
+                    <?php if ($controlGrid): ?>
+                    </div>
+                <?php endif; ?>
+                <?php endforeach; ?>
+
+
+                <!-- HIDDEN FIELDS -->
+                <?php foreach ($hiddenControls as $control): ?>
+                    <?php $this->renderSokoInputControl($control); ?>
                 <?php endforeach; ?>
 
 
                 <!-- SUBMIT BUTTON -->
-
-
-                <div uk-margin>
-                    <button class="uk-button uk-button-primary"><?php echo $submitButtonText; ?></button>
+                <?php if ($grid): ?>
+                <div class="uk-width-1-1">
+                    <?php endif; ?>
+                    <div uk-margin>
+                        <button class="uk-button uk-button-primary
+                    <?php echo $submitButtonClass; ?>"><?php echo $submitButtonText; ?></button>
+                    </div>
+                    <?php if ($grid): ?>
                 </div>
+            <?php endif; ?>
 
-
+                <?php if (empty($grid)): ?>
             </fieldset>
+        <?php endif; ?>
         </form>
         <?php
     }
