@@ -1396,9 +1396,13 @@ Related
 History Log
 ------------------
     
+- 1.62.0 -- 2018-06-02
+
+    - add UikitSokoFormRenderer.renderForm topContent option
+
 - 1.61.0 -- 2018-06-01
 
-    - add WithParsleyUikitSokoFormRenderer topNotification system, add internal js handler for parsley 
+    - add WithParsleyUikitSokoFormRenderer topNotification system, add internal js handler for parsley
     
 - 1.60.1 -- 2018-05-31
 

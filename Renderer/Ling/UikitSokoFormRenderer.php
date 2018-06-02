@@ -37,6 +37,7 @@ class UikitSokoFormRenderer
         $cssClass = $options['class'] ?? null;
         $submitButtonText = $options['submitButtonText'] ?? "Submit";
         $noValidate = $options['noValidate'] ?? false;
+        $topContent = $options['topContent'] ?? "";
 
 
         //--------------------------------------------
@@ -63,6 +64,7 @@ class UikitSokoFormRenderer
         }
         ?>
 
+        <?php echo $topContent; ?>
 
         <form
                 method="<?php echo $formProps['method']; ?>"
