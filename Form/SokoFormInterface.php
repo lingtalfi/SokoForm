@@ -88,6 +88,7 @@ interface SokoFormInterface
      *          - true if the form has been posted successfully (all validation tests passed)
      *          - false if the form has been posted, but at least one validation test failed
      *          - null if the form has not been posted
+     *          - false if the callback returns false
      */
     public function process(callable $onSuccess, array $context = null);
 

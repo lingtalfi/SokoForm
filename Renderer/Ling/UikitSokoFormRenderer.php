@@ -440,16 +440,22 @@ uk-form-danger
         $choices = $control['choices'];
         $controlValue = $control['value'];
         $controlName = $control['name'];
+        $properties = $control['properties'] ?? [];
+        $br = $properties['br'] ?? false;
+
         ?>
         <?php
         $cpt = 0;
         foreach ($choices as $value => $label):
             $sChecked = ((string)$value === (string)$controlValue) ? 'checked' : '';
             ?>
-            <label><input class="uk-radio" type="radio" name="<?php echo htmlspecialchars($controlName); ?>"
+            <label class="uk-text-small"><input class="uk-radio" type="radio" name="<?php echo htmlspecialchars($controlName); ?>"
                           value="<?php echo htmlspecialchars($value); ?>"
                     <?php $this->extraAttributes('renderRadioSokoChoiceControl', $control, $cpt); ?>
                     <?php echo $sChecked; ?>> <?php echo $label; ?></label>
+            <?php if (true === $br): ?>
+            <br>
+        <?php endif; ?>
             <?php
             $cpt++;
         endforeach; ?>

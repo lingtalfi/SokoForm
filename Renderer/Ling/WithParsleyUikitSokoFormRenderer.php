@@ -29,6 +29,8 @@ class WithParsleyUikitSokoFormRenderer extends UikitSokoFormRenderer
     public function renderForm(array $form, array $options = [])
     {
 
+        $disableParsley = $options['disableParsley'] ?? false;
+
 
         $contextId = $options['contextId'] ?? StringTool::getUniqueCssId("with-parsley-uikit-context-");
 
@@ -55,6 +57,8 @@ class WithParsleyUikitSokoFormRenderer extends UikitSokoFormRenderer
 
             ?>
         </div>
+        <?php if (false === $disableParsley): ?>
+
         <script>
             (function ($) {
 
@@ -110,6 +114,7 @@ class WithParsleyUikitSokoFormRenderer extends UikitSokoFormRenderer
                 });
             })(jQuery);
         </script>
+    <?php endif; ?>
         <?php
     }
 

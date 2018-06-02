@@ -359,7 +359,10 @@ class SokoForm implements SokoFormInterface
             // WE CAN JUST CALL THE SUCCESS CALLBACK
             //--------------------------------------------
             if (true === $formIsValid) {
-                call_user_func($onSuccess, $filteredContext, $this);
+                $res = call_user_func($onSuccess, $filteredContext, $this);
+                if (false === $res) {
+                    $formIsValid = false;
+                }
             }
 
 
