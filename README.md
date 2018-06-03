@@ -1396,6 +1396,10 @@ Related
 History Log
 ------------------
     
+- 1.67.0 -- 2018-06-03
+
+    - add UikitSokoFormRenderer.renderSokoFilePlaceHolderControl method
+
 - 1.66.0 -- 2018-06-03
 
     - add SokoFilePlaceholderControl control
