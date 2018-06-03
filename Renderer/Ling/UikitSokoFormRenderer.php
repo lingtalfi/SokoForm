@@ -37,10 +37,17 @@ class UikitSokoFormRenderer
         $cssClass = $options['class'] ?? null;
         $submitButtonText = $options['submitButtonText'] ?? "Submit";
         $submitButtonClass = $options['submitButtonClass'] ?? "";
+        $submitButtonAttributes = $options['submitButtonAttributes'] ?? [];
         $noValidate = $options['noValidate'] ?? false;
         $headings = $options['headings'] ?? [];
         $topContent = $options['topContent'] ?? "";
         $controlIds = $options['controlIds'] ?? [];
+
+        /**
+         * Note: this is named view property (set from the view) as opposed to model property (set
+         * from the model).
+         */
+        $controlViewProperties = $options['controlProperties'] ?? [];
         $grid = $options['grid'] ?? [];
 
 
@@ -117,11 +124,22 @@ class UikitSokoFormRenderer
                     $controlType = $control['type'];
                     $controlGrid = $grid[$controlName] ?? null;
 
+
+                    // merging control properties set from the view with properties set from the model
+                    if (array_key_exists($controlName, $controlViewProperties)) {
+                        $viewProperties = $controlViewProperties[$controlName];
+                        $props = $control['properties'] ?? [];
+                        $props = array_merge($props, $viewProperties);
+                        $control['properties'] = $props;
+                    }
+
+
                     $cssId = $controlIds[$control['name']] ?? null;
                     $cssControlClass = "";
                     if ("SokoChoiceControl" === $controlClass) {
 
                         $properties = $control['properties'];
+
                         $style = $properties['style'] ?? 'select';
                         if ("radio" === $style) {
                             $cssControlClass .= " myuk-radio-container";
@@ -171,6 +189,10 @@ class UikitSokoFormRenderer
                                     $this->renderSokoChoiceControl($control);
                                     break;
                                 case "SokoFileControl":
+                                case "SokoSafeUploadControl":
+                                    if ("SokoSafeUploadControl" === $controlClass) {
+                                        $control['type'] = "ajax";
+                                    }
                                     $this->renderInputFileSokoInputControl($control);
                                     break;
                                 default:
@@ -199,7 +221,11 @@ class UikitSokoFormRenderer
                     <?php endif; ?>
                     <div uk-margin>
                         <button class="uk-button uk-button-primary
-                    <?php echo $submitButtonClass; ?>"><?php echo $submitButtonText; ?></button>
+                    <?php echo $submitButtonClass; ?>"
+                        <?php if($submitButtonAttributes): ?>
+                        <?php echo StringTool::htmlAttributes($submitButtonAttributes); ?>
+                        <?php endif; ?>
+                        ><?php echo $submitButtonText; ?></button>
                     </div>
                     <?php if ($grid): ?>
                 </div>
@@ -323,9 +349,11 @@ class UikitSokoFormRenderer
 
     protected function renderInputAjaxFileSokoInputControl(array $control)
     {
-        $uploadFileTextPart1 = $control['uploadFileTextPart1'] ?? "Attach binaries by dropping them here or";
-        $uploadFileTextPart2 = $control['uploadFileTextPart2'] ?? "selecting one";
-        $cssId = StringTool::getUniqueCssId("uikit-soko-ajax-upload-");
+        $properties = $control['properties'] ?? [];
+        $uploadFileTextPart1 = $properties['uploadFileTextPart1'] ?? "Attach binaries by dropping them here or";
+        $uploadFileTextPart2 = $properties['uploadFileTextPart2'] ?? "selecting one";
+        $url = $properties['url'] ?? "";
+        $cssId = $properties["cssId"] ?? StringTool::getUniqueCssId("uikit-soko-ajax-upload-");
 
 
         $value = $control['value'];
@@ -361,11 +389,17 @@ uk-form-danger
 
         <script>
 
+            /**
+             * Here we define a general hook object,
+             * so that the template can do its own things.
+             */
+            var cssId = "<?php echo addslashes($cssId); ?>";
             var bar = document.getElementById('js-progressbar');
 
-            UIkit.upload('#<?php echo $cssId; ?>', {
 
-                url: '',
+            var component = UIkit.upload('#' + cssId, {
+
+                url: "<?php echo addslashes($url); ?>",
                 multiple: true,
 
                 beforeSend: function () {
@@ -406,8 +440,10 @@ uk-form-danger
                     bar.value = e.loaded;
                 },
 
-                completeAll: function () {
+                completeAll: function (request) {
                     console.log('completeAll', arguments);
+                    var response = request["response"];
+
 
                     setTimeout(function () {
                         bar.setAttribute('hidden', 'hidden');
@@ -417,6 +453,7 @@ uk-form-danger
                 }
 
             });
+
 
         </script>
         <?php

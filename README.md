@@ -1396,6 +1396,10 @@ Related
 History Log
 ------------------
     
+- 1.66.0 -- 2018-06-03
+
+    - add SokoFilePlaceholderControl control
+
 - 1.65.0 -- 2018-06-02
 
     - add UikitSokoFormRenderer grid system
