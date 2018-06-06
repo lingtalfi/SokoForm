@@ -706,6 +706,8 @@ uk-form-danger
             $controlValues = [$controlValues];
         }
         $controlName = $control['name'];
+        $properties = $control['properties'] ?? [];
+        $br = $properties['br'] ?? false;
         ?>
         <?php
         $cpt = 0;
@@ -722,7 +724,9 @@ uk-form-danger
                           value="<?php echo htmlspecialchars($value); ?>"
                     <?php $this->extraAttributes('renderCheckboxSokoChoiceControl', $control, $cpt); ?>
                     <?php echo $sChecked; ?>> <?php echo $label; ?></label>
-
+            <?php if (true === $br): ?>
+            <br>
+        <?php endif; ?>
 
             <?php
             $cpt++;

@@ -1396,6 +1396,10 @@ Related
 History Log
 ------------------
     
+- 1.68.0 -- 2018-06-06
+
+    - add UikitSokoFormRenderer br option for checkboxes
+    
 - 1.67.0 -- 2018-06-03
 
     - add UikitSokoFormRenderer.renderSokoFilePlaceHolderControl method
