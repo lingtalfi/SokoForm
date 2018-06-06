@@ -708,6 +708,7 @@ uk-form-danger
         $controlName = $control['name'];
         $properties = $control['properties'] ?? [];
         $br = $properties['br'] ?? false;
+        $array = $properties['array'] ?? false;
         ?>
         <?php
         $cpt = 0;
@@ -720,7 +721,7 @@ uk-form-danger
             ?>
             <label><input class="uk-checkbox"
                           type="checkbox"
-                          name="<?php echo htmlspecialchars($controlName); ?>"
+                          name="<?php echo htmlspecialchars($controlName); ?><?php echo (true === $array) ? '[]' : ''; ?>"
                           value="<?php echo htmlspecialchars($value); ?>"
                     <?php $this->extraAttributes('renderCheckboxSokoChoiceControl', $control, $cpt); ?>
                     <?php echo $sChecked; ?>> <?php echo $label; ?></label>
