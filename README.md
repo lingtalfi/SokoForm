@@ -1396,6 +1396,10 @@ Related
 History Log
 ------------------
     
+- 1.70.0 -- 2018-06-06
+
+    - add SokoForm.countNotifications method
+    
 - 1.69.0 -- 2018-06-06
 
     - add UikitSokoFormRenderer array option for checkboxes

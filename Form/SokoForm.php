@@ -389,6 +389,11 @@ class SokoForm implements SokoFormInterface
         return $this;
     }
 
+    public function countNotifications()
+    {
+        return count($this->notifications);
+    }
+
 
     public function getModel()
     {
