@@ -27,8 +27,10 @@ class SokoAtLeastNCheckboxCheckedValidationRule extends SokoValidationRule
                     return false;
                 }
             } else {
-                $error = $this->getErrorMessage();
-                return false;
+                if (null === $value) {
+                    $error = $this->getErrorMessage();
+                    return false;
+                }
             }
             return true;
         });
