@@ -1396,6 +1396,10 @@ Related
 History Log
 ------------------
     
+- 1.71.0 -- 2018-06-14
+
+    - add SokoAtLeastNCheckboxCheckedValidationRule class
+    
 - 1.70.0 -- 2018-06-06
 
     - add SokoForm.countNotifications method
