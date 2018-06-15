@@ -24,7 +24,7 @@ class SokoForm implements SokoFormInterface
     private $validationRules;
     private $notifications;
 
-    private $formLevelErrors;
+    private $formLevelErrors; // not used for now, I use error notifications for now
 
     /**
      *
@@ -235,7 +235,7 @@ class SokoForm implements SokoFormInterface
 
     public function addError(string $errorMessage)
     {
-        $this->formLevelErrors[] = $errorMessage;
+        $this->addNotification($errorMessage, "error");
         return $this;
     }
 
@@ -446,7 +446,7 @@ class SokoForm implements SokoFormInterface
                     'class' => $this->class,
                     'attributeString' => $this->getFormAttributesAsString(),
                     'attributes' => $this->getAttributes(),
-                    'errors' => $this->formLevelErrors,
+                    'errors' => $formErrors,
                     'notifications' => $this->notifications,
                 ],
                 'controls' => $controls,
