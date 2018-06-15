@@ -24,6 +24,8 @@ class SokoForm implements SokoFormInterface
     private $validationRules;
     private $notifications;
 
+    private $formLevelErrors;
+
     /**
      *
      * The two properties below:
@@ -81,6 +83,7 @@ class SokoForm implements SokoFormInterface
         $this->class = [];
         $this->enctype = null;
         $this->controls = [];
+        $this->formLevelErrors = [];
         $this->notifications = [];
         $this->validationRules = [];
         $this->prepared = false;
@@ -228,6 +231,12 @@ class SokoForm implements SokoFormInterface
                 $control->setValue($context[$name]);
             }
         }
+    }
+
+    public function addError(string $errorMessage)
+    {
+        $this->formLevelErrors[] = $errorMessage;
+        return $this;
     }
 
 
@@ -437,7 +446,7 @@ class SokoForm implements SokoFormInterface
                     'class' => $this->class,
                     'attributeString' => $this->getFormAttributesAsString(),
                     'attributes' => $this->getAttributes(),
-                    'errors' => $formErrors,
+                    'errors' => $this->formLevelErrors,
                     'notifications' => $this->notifications,
                 ],
                 'controls' => $controls,
