@@ -1,7 +1,7 @@
 <?php
 
 use Module\ThisApp\DocumentCollector\LeaderfitDocumentCollectionHandler;
-use SokoForm\Renderer\Ling\WithParsleyUikitSokoFormRenderer;
+use Ling\SokoForm\Renderer\Ling\WithParsleyUikitSokoFormRenderer;
 
 LeaderfitDocumentCollectionHandler::getLib("soko");
 

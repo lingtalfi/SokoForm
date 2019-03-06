@@ -1,12 +1,12 @@
 <?php
 
 
-namespace SokoForm\Form;
+namespace Ling\SokoForm\Form;
 
 
-use SokoForm\Control\SokoControlInterface;
-use SokoForm\Exception\SokoFormException;
-use SokoForm\ValidationRule\SokoValidationRuleInterface;
+use Ling\SokoForm\Control\SokoControlInterface;
+use Ling\SokoForm\Exception\SokoFormException;
+use Ling\SokoForm\ValidationRule\SokoValidationRuleInterface;
 
 
 /**

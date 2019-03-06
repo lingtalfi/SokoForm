@@ -1,13 +1,13 @@
 <?php
 
 
-namespace SokoForm\ValidationRule;
+namespace Ling\SokoForm\ValidationRule;
 
 
-use Bat\ValidationTool;
-use SokoForm\Control\SokoControlInterface;
-use SokoForm\Form\SokoFormInterface;
-use SokoForm\Translator\SokoValidationRuleTranslator;
+use Ling\Bat\ValidationTool;
+use Ling\SokoForm\Control\SokoControlInterface;
+use Ling\SokoForm\Form\SokoFormInterface;
+use Ling\SokoForm\Translator\SokoValidationRuleTranslator;
 
 class SokoEmailValidationRule extends SokoValidationRule
 {

@@ -1,7 +1,7 @@
 <?php
 
 
-namespace SokoForm\NotificationRenderer;
+namespace Ling\SokoForm\NotificationRenderer;
 
 
 class SokoNotificationRenderer

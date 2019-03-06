@@ -4,13 +4,13 @@
 
 use Core\Services\A;
 
-use SokoForm\Control\SokoChoiceControl;
-use SokoForm\Control\SokoFileControl;
-use SokoForm\Control\SokoInputControl;
-use SokoForm\Form\SokoForm;
-use SokoForm\Form\SokoFormInterface;
-use SokoForm\Renderer\Ling\UikitSokoFormRenderer;
-use SokoForm\ValidationRule\SokoNotEmptyValidationRule;
+use Ling\SokoForm\Control\SokoChoiceControl;
+use Ling\SokoForm\Control\SokoFileControl;
+use Ling\SokoForm\Control\SokoInputControl;
+use Ling\SokoForm\Form\SokoForm;
+use Ling\SokoForm\Form\SokoFormInterface;
+use Ling\SokoForm\Renderer\Ling\UikitSokoFormRenderer;
+use Ling\SokoForm\ValidationRule\SokoNotEmptyValidationRule;
 
 
 // using kamille framework here (https://github.com/lingtalfi/kamille)

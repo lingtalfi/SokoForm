@@ -1,11 +1,11 @@
 <?php
 
 
-namespace SokoForm\Renderer\Ling;
+namespace Ling\SokoForm\Renderer\Ling;
 
 
-use Bat\ClassTool;
-use Bat\StringTool;
+use Ling\Bat\ClassTool;
+use Ling\Bat\StringTool;
 use Module\Ekom\Utils\E;
 
 class WithParsleyUikitSokoFormRenderer extends UikitSokoFormRenderer

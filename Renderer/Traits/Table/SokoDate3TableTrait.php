@@ -1,7 +1,7 @@
 <?php
 
 
-namespace SokoForm\Renderer\Traits\Table;
+namespace Ling\SokoForm\Renderer\Traits\Table;
 
 
 trait SokoDate3TableTrait

@@ -1,7 +1,7 @@
 <?php
 
 
-namespace SokoForm\Exception;
+namespace Ling\SokoForm\Exception;
 
 class SokoException extends \Exception
 {

@@ -1,7 +1,7 @@
 <?php
 
 
-namespace SokoForm\Translator;
+namespace Ling\SokoForm\Translator;
 
 
 class SokoValidationRuleTranslator

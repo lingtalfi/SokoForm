@@ -1,7 +1,7 @@
 <?php
 
 
-namespace SokoForm\Control;
+namespace Ling\SokoForm\Control;
 
 /**
  * The idea with this control is that you have two controls:

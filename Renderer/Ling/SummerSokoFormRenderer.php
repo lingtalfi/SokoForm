@@ -1,11 +1,11 @@
 <?php
 
 
-namespace SokoForm\Renderer\Ling;
+namespace Ling\SokoForm\Renderer\Ling;
 
 
-use SokoForm\Form\SokoFormInterface;
-use SokoForm\NotificationRenderer\SokoNotificationRenderer;
+use Ling\SokoForm\Form\SokoFormInterface;
+use Ling\SokoForm\NotificationRenderer\SokoNotificationRenderer;
 
 class SummerSokoFormRenderer
 {

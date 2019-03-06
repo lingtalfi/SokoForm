@@ -1,10 +1,10 @@
 <?php
 
 
-namespace SokoForm\Control;
+namespace Ling\SokoForm\Control;
 
-use Bat\HashTool;
-use Bat\StringTool;
+use Ling\Bat\HashTool;
+use Ling\Bat\StringTool;
 
 /**
  * See SafeUploader planet for more info.

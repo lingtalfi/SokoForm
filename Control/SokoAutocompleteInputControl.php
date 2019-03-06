@@ -1,7 +1,7 @@
 <?php
 
 
-namespace SokoForm\Control;
+namespace Ling\SokoForm\Control;
 
 
 class SokoAutocompleteInputControl extends SokoInputControl

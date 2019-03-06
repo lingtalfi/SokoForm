@@ -1,10 +1,10 @@
 <?php
 
 
-namespace SokoForm\Renderer\Ling;
+namespace Ling\SokoForm\Renderer\Ling;
 
 
-use Bat\StringTool;
+use Ling\Bat\StringTool;
 
 class UikitSokoFormRenderer
 {

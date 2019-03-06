@@ -1,10 +1,10 @@
 <?php
 
 
-namespace SokoForm\Renderer;
+namespace Ling\SokoForm\Renderer;
 
 
-use SokoForm\Renderer\Traits\Table\SokoDate3TableTrait;
+use Ling\SokoForm\Renderer\Traits\Table\SokoDate3TableTrait;
 
 class SokoDemoFormRenderer extends SokoTableFormRenderer
 {

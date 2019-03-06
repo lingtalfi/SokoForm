@@ -1,7 +1,7 @@
 <?php
 
 
-namespace SokoForm\Control;
+namespace Ling\SokoForm\Control;
 
 
 class SokoChoiceControl extends SokoControl

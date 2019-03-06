@@ -1,11 +1,11 @@
 <?php
 
 
-namespace SokoForm\Tool;
+namespace Ling\SokoForm\Tool;
 
 
-use Bat\ArrayTool;
-use SokoForm\Exception\SokoException;
+use Ling\Bat\ArrayTool;
+use Ling\SokoForm\Exception\SokoException;
 
 class GroupModelTool
 {

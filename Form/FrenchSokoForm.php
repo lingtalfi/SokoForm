@@ -1,10 +1,10 @@
 <?php
 
 
-namespace SokoForm\Form;
+namespace Ling\SokoForm\Form;
 
 
-use SokoForm\Translator\SokoValidationRuleTranslator;
+use Ling\SokoForm\Translator\SokoValidationRuleTranslator;
 
 class FrenchSokoForm extends SokoForm
 {

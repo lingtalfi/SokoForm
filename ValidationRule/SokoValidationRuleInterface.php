@@ -1,7 +1,7 @@
 <?php
 
 
-namespace SokoForm\ValidationRule;
+namespace Ling\SokoForm\ValidationRule;
 
 
 interface SokoValidationRuleInterface

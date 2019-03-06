@@ -15,7 +15,7 @@ Install
 ==========
 Using the [uni](https://github.com/lingtalfi/universe-naive-importer) command.
 ```bash
-uni import SokoForm
+uni import Ling/SokoForm
 ```
 
 Or just download it and place it where you want otherwise.
@@ -1100,23 +1100,23 @@ The final example
 <?php
 
 
-use Bat\ArrayTool;
+use Ling\Bat\ArrayTool;
 use Core\Services\A;
-use SokoForm\Control\SokoChoiceControl;
-use SokoForm\Control\SokoFileControl;
-use SokoForm\Control\SokoInputControl;
-use SokoForm\Form\SokoForm;
-use SokoForm\Form\SokoFormInterface;
-use SokoForm\NotificationRenderer\SokoNotificationRenderer;
-use SokoForm\Renderer\SokoDemoFormRenderer;
-use SokoForm\ValidationRule\SokoAtLeastXCharsValidationRule;
-use SokoForm\ValidationRule\SokoContainsBetweenXAndYDigitsValidationRule;
-use SokoForm\ValidationRule\SokoEmailValidationRule;
-use SokoForm\ValidationRule\SokoInArrayValidationRule;
-use SokoForm\ValidationRule\SokoInRangeValidationRule;
-use SokoForm\ValidationRule\SokoIsCheckedValidationRule;
-use SokoForm\ValidationRule\SokoNotEmptyValidationRule;
-use SokoForm\ValidationRule\SokoSameAsValidationRule;
+use Ling\SokoForm\Control\SokoChoiceControl;
+use Ling\SokoForm\Control\SokoFileControl;
+use Ling\SokoForm\Control\SokoInputControl;
+use Ling\SokoForm\Form\SokoForm;
+use Ling\SokoForm\Form\SokoFormInterface;
+use Ling\SokoForm\NotificationRenderer\SokoNotificationRenderer;
+use Ling\SokoForm\Renderer\SokoDemoFormRenderer;
+use Ling\SokoForm\ValidationRule\SokoAtLeastXCharsValidationRule;
+use Ling\SokoForm\ValidationRule\SokoContainsBetweenXAndYDigitsValidationRule;
+use Ling\SokoForm\ValidationRule\SokoEmailValidationRule;
+use Ling\SokoForm\ValidationRule\SokoInArrayValidationRule;
+use Ling\SokoForm\ValidationRule\SokoInRangeValidationRule;
+use Ling\SokoForm\ValidationRule\SokoIsCheckedValidationRule;
+use Ling\SokoForm\ValidationRule\SokoNotEmptyValidationRule;
+use Ling\SokoForm\ValidationRule\SokoSameAsValidationRule;
 
 
 //--------------------------------------------

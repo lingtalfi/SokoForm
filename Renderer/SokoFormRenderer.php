@@ -1,15 +1,15 @@
 <?php
 
 
-namespace SokoForm\Renderer;
+namespace Ling\SokoForm\Renderer;
 
 
-use Bat\CaseTool;
-use Bat\StringTool;
+use Ling\Bat\CaseTool;
+use Ling\Bat\StringTool;
 use Module\Ekom\Utils\E;
-use SokoForm\Exception\SokoException;
-use SokoForm\Exception\SokoFormException;
-use SokoForm\Form\SokoFormInterface;
+use Ling\SokoForm\Exception\SokoException;
+use Ling\SokoForm\Exception\SokoFormException;
+use Ling\SokoForm\Form\SokoFormInterface;
 
 class SokoFormRenderer
 {

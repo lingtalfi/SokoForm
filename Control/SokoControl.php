@@ -1,7 +1,7 @@
 <?php
 
 
-namespace SokoForm\Control;
+namespace Ling\SokoForm\Control;
 
 
 abstract class SokoControl implements SokoControlInterface

@@ -1,14 +1,14 @@
 <?php
 
 
-namespace SokoForm\ValidationRule;
+namespace Ling\SokoForm\ValidationRule;
 
 
-use Bat\HttpTool;
-use SokoForm\Control\SokoControlInterface;
-use SokoForm\Exception\SokoFormException;
-use SokoForm\Form\SokoFormInterface;
-use SokoForm\Translator\SokoValidationRuleTranslator;
+use Ling\Bat\HttpTool;
+use Ling\SokoForm\Control\SokoControlInterface;
+use Ling\SokoForm\Exception\SokoFormException;
+use Ling\SokoForm\Form\SokoFormInterface;
+use Ling\SokoForm\Translator\SokoValidationRuleTranslator;
 use Symfony\Component\DomCrawler\Crawler;
 
 /**

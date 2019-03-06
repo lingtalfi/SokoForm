@@ -1,7 +1,7 @@
 <?php
 
 
-namespace SokoForm\Util;
+namespace Ling\SokoForm\Util;
 
 
 class SokoUtil

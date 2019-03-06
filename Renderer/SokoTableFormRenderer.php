@@ -1,10 +1,10 @@
 <?php
 
 
-namespace SokoForm\Renderer;
+namespace Ling\SokoForm\Renderer;
 
-use Bat\CaseTool;
-use Bat\StringTool;
+use Ling\Bat\CaseTool;
+use Ling\Bat\StringTool;
 
 /**
  * How to use:

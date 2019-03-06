@@ -1,16 +1,16 @@
 <?php
 
 
-namespace SokoForm\Form;
+namespace Ling\SokoForm\Form;
 
 
-use Bat\ClassTool;
-use Bat\StringTool;
-use SokoForm\Control\SokoControlInterface;
-use SokoForm\Control\SokoFileControl;
-use SokoForm\Control\SokoInputControl;
-use SokoForm\Exception\SokoFormException;
-use SokoForm\ValidationRule\SokoValidationRuleInterface;
+use Ling\Bat\ClassTool;
+use Ling\Bat\StringTool;
+use Ling\SokoForm\Control\SokoControlInterface;
+use Ling\SokoForm\Control\SokoFileControl;
+use Ling\SokoForm\Control\SokoInputControl;
+use Ling\SokoForm\Exception\SokoFormException;
+use Ling\SokoForm\ValidationRule\SokoValidationRuleInterface;
 
 class SokoForm implements SokoFormInterface
 {
